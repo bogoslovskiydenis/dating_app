@@ -4,7 +4,7 @@ ThemeData theme() {
   return ThemeData(
       primaryColor: const Color(0xFF282E4A),
       scaffoldBackgroundColor: Colors.white,
-      backgroundColor: const Color(0xFFF4F4F4),
+      backgroundColor: Colors.white,
       fontFamily: 'Optima',
       colorScheme:
           ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFD71B1B)),
