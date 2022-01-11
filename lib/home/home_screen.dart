@@ -1,5 +1,7 @@
+import 'package:dating_app/bloc/swipe_bloc.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widget/choice_button.dart';
 import 'widget/custom_app_bar.dart';
@@ -19,28 +21,82 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: Column(
-        children: [
-          Draggable(child: UserCard(user: User.users[0],),
-            feedback: UserCard(user: User.users[0],),
-            childWhenDragging: UserCard(user: User.users[1],),
-            onDragEnd: (drag){
-            if(drag.velocity.pixelsPerSecond.dx<0){
-              print ('left');
-            }else{print('right');}
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
-            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BlocBuilder<SwipeBloc, SwipeState>(
+        builder: (context, state) {
+          if (state is SwipeLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is SwipeLoaded) {
+            return Column(
               children: [
-                ChoiceButton(widht: 60, height: 60, size: 25, color: Theme.of(context).colorScheme.secondary, icon: Icons.clear_rounded ,),
-                ChoiceButton(widht: 60, height: 60, size: 25, color: Theme.of(context).colorScheme.secondary, icon: Icons.favorite ,),
-                ChoiceButton(widht: 60, height: 60, size: 25, color: Theme.of(context).colorScheme.secondary, icon: Icons.watch_later_outlined ,),
+                Draggable(
+                  child: UserCard(
+                    user: state.users[0],
+                  ),
+                  feedback: UserCard(
+                    user: state.users[0],
+                  ),
+                  childWhenDragging: UserCard(
+                    user: state.users[1],
+                  ),
+                  onDragEnd: (drag) {
+                    if (drag.velocity.pixelsPerSecond.dx < 0) {
+                      context.read<SwipeBloc>()
+                        ..add(SwipeLeftEvent(user: state.users[0]));
+                      print('left');
+                    } else {
+                      context.read<SwipeBloc>()
+                        ..add(SwipeRightEvent(user: state.users[1]));
+                      print('right');
+                    }
+                  },
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
+                        print('left');
+                        },
+                        child: ChoiceButton(
+                          widht: 60,
+                          height: 60,
+                          size: 25,
+                          color: Theme.of(context).colorScheme.secondary,
+                          icon: Icons.clear_rounded,
+                        ),
+                      ),
+                      InkWell(
+                          onTap: () {context.read<SwipeBloc>().add(SwipeRightEvent(user: state.users[1]));
+                          print('right');
+                          },
+                          child: ChoiceButton(
+                            widht: 60,
+                            height: 60,
+                            size: 25,
+                            color: Theme.of(context).colorScheme.secondary,
+                            icon: Icons.favorite,
+                          )),
+                      ChoiceButton(
+                        widht: 60,
+                        height: 60,
+                        size: 25,
+                        color: Theme.of(context).colorScheme.secondary,
+                        icon: Icons.watch_later_outlined,
+                      ),
+                    ],
+                  ),
+                ),
               ],
-            ),
-          ),
-        ],
+            );
+          } else {
+            return Text('Error');
+          }
+        },
       ),
     );
   }
