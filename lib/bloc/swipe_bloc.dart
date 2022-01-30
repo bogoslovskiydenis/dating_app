@@ -40,7 +40,9 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
     if (state is SwipeLoaded) {
       try {
         yield SwipeLoaded(users: List.from(state.users)..remove(event.user));
-      } catch (_) {}
+      } catch (_) {
+        SwipeError();
+      }
     }
   }
 
@@ -51,7 +53,9 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
     if (state is SwipeLoaded) {
       try {
         yield SwipeLoaded(users: List.from(state.users)..remove(event.user));
-      } catch (_) {}
+      } catch (_) {
+        SwipeError();
+      }
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:dating_app/bloc/swipe_bloc.dart';
-import 'package:dating_app/model/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,17 +13,18 @@ class HomeScreen extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (context) => HomeScreen(),
+      builder: (context) => const HomeScreen(),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: BlocBuilder<SwipeBloc, SwipeState>(
         builder: (context, state) {
           if (state is SwipeLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is SwipeLoaded) {
@@ -42,12 +42,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   onDragEnd: (drag) {
                     if (drag.velocity.pixelsPerSecond.dx < 0) {
-                      context.read<SwipeBloc>()
-                        ..add(SwipeLeftEvent(user: state.users[0]));
+                      context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
                       print('left');
                     } else {
-                      context.read<SwipeBloc>()
-                        ..add(SwipeRightEvent(user: state.users[1]));
+                      context.read<SwipeBloc>()..add(SwipeRightEvent(user: state.users[1]));
                       print('right');
                     }
                   },
@@ -59,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
+                        onTap: () {context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
                         print('left');
                         },
                         child: ChoiceButton(
@@ -71,8 +69,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                          onTap: () {context.read<SwipeBloc>().add(SwipeRightEvent(user: state.users[1]));
-                          print('right');
+                          onTap: () {context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
+                          print('left');
                           },
                           child: ChoiceButton(
                             widht: 60,
