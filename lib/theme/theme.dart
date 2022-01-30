@@ -27,7 +27,7 @@ ThemeData theme() {
         headline4: TextStyle(
             color: Color(0xFF282E4A),
             fontWeight: FontWeight.bold,
-            fontSize: 16
+            fontSize: 14
         ),
       )
   );
