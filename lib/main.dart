@@ -1,23 +1,27 @@
 import 'package:dating_app/home/home_screen.dart';
 import 'package:dating_app/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import 'theme/theme.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class AppRouter {
+  static Route? onGenerateRote(RouteSettings settings) {
+    print('The Route is: ${settings.name}');
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+    switch (settings.name){
+      case '/':
+        return HomeScreen.route();
+      case UsersScreen.routeName:
+        return UsersScreen.route();
+      default:
+        return _errorRoute();
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: theme(),
-      home:  UsersScreen(),
-    );
+  }
+
+  static Route _errorRoute() {
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(appBar: AppBar(title: Text('error'))),
+      settings: RouteSettings(name: '/error'),);
   }
 }
