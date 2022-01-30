@@ -1,27 +1,33 @@
+import 'package:dating_app/bloc/swipe_bloc.dart';
 import 'package:dating_app/home/home_screen.dart';
-import 'package:dating_app/user_screen/user_screen.dart';
+import 'package:dating_app/model/models.dart';
+import 'package:dating_app/routing/app_routing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'theme/theme.dart';
 
-class AppRouter {
-  static Route? onGenerateRote(RouteSettings settings) {
-    print('The Route is: ${settings.name}');
+void main() {
+  runApp(const MyApp());
+}
 
-    switch (settings.name){
-      case '/':
-        return HomeScreen.route();
-      case UsersScreen.routeName:
-        return UsersScreen.route();
-      default:
-        return _errorRoute();
-    }
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  }
-
-  static Route _errorRoute() {
-    return MaterialPageRoute(
-      builder: (_) => Scaffold(appBar: AppBar(title: Text('error'))),
-      settings: RouteSettings(name: '/error'),);
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (_) => SwipeBloc()..add(LoadUsersEvent(users: User.users)))
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: theme(),
+        onGenerateRoute: AppRouter.onGenerateRote,
+        initialRoute: HomeScreen.routeName,
+      ),
+    );
   }
 }
