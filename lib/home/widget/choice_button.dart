@@ -9,9 +9,9 @@ class ChoiceButton extends StatelessWidget {
 
   const ChoiceButton(
       {Key? key,
-      required this.widht,
-      required this.height,
-      required this.size,
+       this.widht = 60,
+      this.height = 60,
+       this.size = 25,
       required this.color,
       required this.icon})
       : super(key: key);

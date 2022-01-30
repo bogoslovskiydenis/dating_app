@@ -1,4 +1,5 @@
 import 'package:dating_app/home/home_screen.dart';
+import 'package:dating_app/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,6 +11,8 @@ class AppRouter {
     switch (settings.name){
       case '/':
         return HomeScreen.route();
+      case UsersScreen.routeName:
+        return UsersScreen.route();
       default:
         return _errorRoute();
     }

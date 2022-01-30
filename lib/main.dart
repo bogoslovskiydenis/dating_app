@@ -1,4 +1,5 @@
 import 'package:dating_app/home/home_screen.dart';
+import 'package:dating_app/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'theme/theme.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home:  HomeScreen(),
+      home:  UsersScreen(),
     );
   }
 }
