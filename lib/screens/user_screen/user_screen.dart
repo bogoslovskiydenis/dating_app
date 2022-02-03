@@ -1,5 +1,5 @@
-import 'package:dating_app/home/widget/choice_button.dart';
 import 'package:dating_app/model/models.dart';
+import 'package:dating_app/screens/home/widget/choice_button.dart';
 import 'package:flutter/material.dart';
 
 class UsersScreen extends StatelessWidget {

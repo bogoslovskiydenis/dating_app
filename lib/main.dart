@@ -1,10 +1,11 @@
 import 'package:dating_app/bloc/swipe_bloc.dart';
-import 'package:dating_app/home/home_screen.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'screens/home/home_screen.dart';
+import 'screens/match_screen/match_screen.dart';
 import 'theme/theme.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRote,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: MatchesScreen.routeName,
       ),
     );
   }

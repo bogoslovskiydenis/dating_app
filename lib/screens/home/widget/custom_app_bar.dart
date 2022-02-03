@@ -10,6 +10,8 @@ class CustomAppBar  extends StatelessWidget with PreferredSizeWidget{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
           children: [

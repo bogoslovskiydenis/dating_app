@@ -1,6 +1,7 @@
-import 'package:dating_app/home/home_screen.dart';
 import 'package:dating_app/model/models.dart';
-import 'package:dating_app/user_screen/user_screen.dart';
+import 'package:dating_app/screens/home/home_screen.dart';
+import 'package:dating_app/screens/match_screen/match_screen.dart';
+import 'package:dating_app/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,6 +15,9 @@ class AppRouter {
         return HomeScreen.route();
       case UsersScreen.routeName:
         return UsersScreen.route(user: settings.arguments as User);
+      case MatchesScreen.routeName:
+        return MatchesScreen.route();
+
       default:
         return _errorRoute();
     }
