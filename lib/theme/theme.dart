@@ -5,6 +5,7 @@ ThemeData theme() {
       primaryColor: const Color(0xFF282E4A),
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
+      dialogBackgroundColor: Color(0xFFCCCED7),
       fontFamily: 'Optima',
       colorScheme:
           ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFD71B1B)),

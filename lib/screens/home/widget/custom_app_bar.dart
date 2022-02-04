@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar  extends StatelessWidget with PreferredSizeWidget{
   const CustomAppBar({
-    Key? key}):  super(key:key);
-
+    Key? key, required this.title}):  super(key:key);
+final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
