@@ -59,26 +59,29 @@ class MatchesScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline4,
               ),
               SizedBox(
-
                 child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: activeMatches.length,
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          UserImageSmall(
-                            height: 70,
-                            width: 70,
-                            url: activeMatches[index].matchedUser.imageUrls[0],
-                          ),
-                          Column(
-                            children: [
-                              Text(activeMatches[index].matchedUser.name),
-                              Text(activeMatches[index].chat![0].messages![0].message),
-                              Text(activeMatches[index].chat![0].messages![0].timeString),
-                            ],
-                          )
-                        ],
+                      return InkWell( onTap: (){
+                        Navigator.pushNamed(context,'/chat' ,arguments: activeMatches[index]);
+                      },
+                        child: Row(
+                          children: [
+                            UserImageSmall(
+                              height: 70,
+                              width: 70,
+                              url: activeMatches[index].matchedUser.imageUrls[0],
+                            ),
+                            Column(
+                              children: [
+                                Text(activeMatches[index].matchedUser.name),
+                                Text(activeMatches[index].chat![0].messages![0].message),
+                                Text(activeMatches[index].chat![0].messages![0].timeString),
+                              ],
+                            )
+                          ],
+                        ),
                       );
                     }),
               )
