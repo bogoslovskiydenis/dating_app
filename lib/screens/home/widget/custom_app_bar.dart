@@ -33,8 +33,8 @@ final String title;
           ],
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.message ,color: Theme.of(context).primaryColor,)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.person ,color: Theme.of(context).primaryColor,)),
+          IconButton(onPressed: (){Navigator.pushNamed(context, '/matches');}, icon: Icon(Icons.message ,color: Theme.of(context).primaryColor,)),
+          IconButton(onPressed: (){Navigator.pushNamed(context, '/profile');}, icon: Icon(Icons.person ,color: Theme.of(context).primaryColor,)),
         ],
       ),
     );
