@@ -3,6 +3,7 @@ import 'package:dating_app/model/user_match.dart';
 import 'package:dating_app/screens/chat_screen/chat.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/match_screen/match_screen.dart';
+import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:dating_app/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,6 +22,8 @@ class AppRouter {
         return MatchesScreen.route();
       case ChatScreen.routeName:
         return ChatScreen.route(userMatch: settings.arguments as UserMatch);
+      case ProfileScreen.routeName:
+        return ProfileScreen.route();
       default:
         return _errorRoute();
     }

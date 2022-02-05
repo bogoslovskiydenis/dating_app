@@ -1,9 +1,10 @@
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/screens/home/widget/choice_button.dart';
+import 'package:dating_app/screens/home/widget/custom_chips_container.dart';
 import 'package:flutter/material.dart';
 
 class UsersScreen extends StatelessWidget {
-  const UsersScreen({Key? key, required this.user, }) : super(key: key);
+  const UsersScreen({Key? key, required this.user,}) : super(key: key);
 
   static const String routeName = '/users';
 
@@ -97,29 +98,13 @@ class UsersScreen extends StatelessWidget {
                           height: 2,
                         ),
                   ),
-SizedBox(height: 15,),
+                  SizedBox(height: 15,),
                   Text(
                     'Interests',
                     style: Theme.of(context).textTheme.headline3,
                   ),
-                  Row(
-                    children:
-                      user.interests.map((interest) => Container(
-                        padding: const EdgeInsets.all(5.0),
-                        margin: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                            gradient: LinearGradient(colors: [
-                          Theme.of(context).primaryColor,
-                          Theme.of(context).colorScheme.secondary,
-                        ])),
-                        child: Text(
-                          interest,
-                          style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white),
-                        ),
-                      ),
-                      ).toList(),
-                  )
+                  /*make create chips */
+                  const CustomChipsContainer(text: "Music")
                 ],
               ),
             )

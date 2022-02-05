@@ -1,6 +1,7 @@
 import 'package:dating_app/bloc/swipe_bloc.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
+import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRote,
-        initialRoute: MatchesScreen.routeName,
+        initialRoute: ProfileScreen.routeName,
       ),
     );
   }
