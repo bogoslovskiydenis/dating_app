@@ -1,10 +1,9 @@
 import 'package:dating_app/model/user_model.dart';
 import 'package:dating_app/screens/home/widget/custom_app_bar.dart';
 import 'package:dating_app/screens/home/widget/custom_chips_container.dart';
+import 'package:dating_app/screens/profile_screen/widgets/title_with_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/title_with_icon.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -123,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                   title: 'Interest',
                   icon: Icons.edit,
                 ),
-                CustomChipsContainer(text: "Music")
+                CustomChipsContainer(),
               ],
             ),
           )
@@ -132,3 +131,5 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
+

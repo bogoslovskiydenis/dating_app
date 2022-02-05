@@ -104,7 +104,7 @@ class UsersScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   /*make create chips */
-                  const CustomChipsContainer(text: "Music")
+                  CustomChipsContainer(),
                 ],
               ),
             )
