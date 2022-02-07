@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../login_widget/custom_text_field.dart';
 
-class EmailScreen extends StatelessWidget {
-  const EmailScreen({Key? key, required this.tabController}) : super(key: key);
+class EmailVerification extends StatelessWidget {
+  const EmailVerification({Key? key, required this.tabController}) : super(key: key);
   final TabController tabController;
 
   @override
@@ -17,21 +17,21 @@ class EmailScreen extends StatelessWidget {
           Column(
             children: [
               Text(
-                'What\' Your Email Address?',
+                'Did you get the Verification Code?',
                 style: Theme.of(context)
                     .textTheme
                     .headline1!
                     .copyWith(fontWeight: FontWeight.normal),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: CustomTextField(tabController: tabController, hint: 'Write yor mail here',),
+                padding: const EdgeInsets.only(top:20),
+                child: CustomTextField(tabController: tabController, hint: 'Write yor Verification Code',),
               ),
             ],
           ),
           CustomButton(
             tabController: tabController,
-            text: 'Enter your Mail to Next Step',
+            text: 'Enter your Verification Code to Next Step',
           )
         ],
       ),
