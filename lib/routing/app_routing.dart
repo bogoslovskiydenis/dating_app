@@ -2,6 +2,7 @@ import 'package:dating_app/model/models.dart';
 import 'package:dating_app/model/user_match.dart';
 import 'package:dating_app/screens/chat_screen/chat.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
+import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/match_screen/match_screen.dart';
 import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:dating_app/screens/user_screen/user_screen.dart';
@@ -24,6 +25,8 @@ class AppRouter {
         return ChatScreen.route(userMatch: settings.arguments as UserMatch);
       case ProfileScreen.routeName:
         return ProfileScreen.route();
+      case LoginScreen.routeName:
+        return LoginScreen.route();
       default:
         return _errorRoute();
     }

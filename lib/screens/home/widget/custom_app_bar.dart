@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title}) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, this.action=true}) : super(key: key);
   final String title;
+  final bool action;
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +16,18 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
                 child: Image.asset(
-              'assets/emblem.jpg',
-              fit: BoxFit.contain,
-            )),
+              'assets/emblem.jpg',height: 60,
+                )),
             Expanded(
               flex: 2,
               child: Text(
-                'Dating',
+                title,
                 style: GoogleFonts.reenieBeanie(
-                  fontSize: 25,
+                  fontSize: 30,
                   color: Color(0xFF282E4A),
                   fontWeight: FontWeight.bold,
                 ),
@@ -33,7 +35,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             )
           ],
         ),
-        actions: [
+        actions:  action ? [
           IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/matches');
@@ -50,11 +52,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 Icons.person,
                 color: Theme.of(context).primaryColor,
               )),
-        ],
+        ] : null,
       ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(56.0);
+  Size get preferredSize => Size.fromHeight(50.0);
 }

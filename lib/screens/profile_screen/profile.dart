@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final User user = User.users[0];
     return Scaffold(
-      appBar: const CustomAppBar(title: "Profile"),
+      appBar: CustomAppBar(title: "Profile"),
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
