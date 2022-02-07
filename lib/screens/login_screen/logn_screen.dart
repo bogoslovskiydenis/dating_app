@@ -5,6 +5,7 @@ import 'package:dating_app/screens/login_screen/login_screens/start_screen.dart'
 import 'package:flutter/material.dart';
 
 import 'login_screens/email_screen_verification.dart';
+import 'login_screens/gender.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class LoginScreen extends StatelessWidget {
     Tab(text: 'Start'),
     Tab(text: 'Email'),
     Tab(text: 'Email Verification'),
-    // Tab(text: 'Pictures'),
+    Tab(text: 'Gender'),
     // Tab(text: 'Biography'),
     // Tab(text: 'Location')
   ];
@@ -41,6 +42,7 @@ class LoginScreen extends StatelessWidget {
             Start(tabController: tabController),
             EmailScreen(tabController: tabController),
             EmailVerification(tabController: tabController),
+            GenderScreen(tabController: tabController),
           ],
         ),
       );
