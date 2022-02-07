@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
 
   static const List<Tab> tabs = <Tab>[
     Tab(text: 'Start'),
-    // Tab(text: 'Email'),
+    Tab(text: 'Email'),
     // Tab(text: 'Demographics'),
     // Tab(text: 'Pictures'),
     // Tab(text: 'Biography'),
@@ -32,14 +32,13 @@ class LoginScreen extends StatelessWidget {
       tabController.addListener(() {
         if (!tabController.indexIsChanging) {}
       });
-
       return Scaffold(
         appBar: const CustomAppBar(title: 'Dating', action: false,),
         body: TabBarView(
           children: [
             Start(tabController: tabController),
+            EmailScreen(tabController: tabController),
             // BioScreen(),
-            // EmainScreen(),
           ],
         ),
       );

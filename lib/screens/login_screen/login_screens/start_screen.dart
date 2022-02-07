@@ -8,14 +8,14 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding:  const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
-                image: DecorationImage(image: AssetImage('assets/logo.jpg'), fit: BoxFit.cover)),
+                image: const DecorationImage(image: AssetImage('assets/logo.jpg'), fit: BoxFit.cover)),
              width: 200,
              height: 300,
             // child: Image.asset('assets/logo.jpg'),
@@ -24,7 +24,7 @@ class Start extends StatelessWidget {
               'Welcome to Dating App',
               style: Theme.of(context).textTheme.headline2,
           ),
-          Text('App Description'),
+          const Text('App Description'),
           CustomButton(tabController: tabController),
         ],
       ),
