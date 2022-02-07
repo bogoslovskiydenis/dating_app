@@ -16,8 +16,7 @@ class CustomChipsContainer extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                   gradient: LinearGradient(colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).colorScheme.secondary,
+                    Colors.red, Colors.blue
                   ])),
               child: Text(
                 interest,
