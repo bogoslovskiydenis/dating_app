@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                         context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
                         print('left');
                       } else {
-                        context.read<SwipeBloc>()..add(SwipeRightEvent(user: state.users[1]));
+                        context.read<SwipeBloc>()..add(SwipeRightEvent(user: state.users[0]));
                         print('right');
                       }
                     },
@@ -66,28 +66,19 @@ class HomeScreen extends StatelessWidget {
                         print('left');
                         },
                         child: ChoiceButton(
-                          widht: 60,
-                          height: 60,
-                          size: 25,
                           color: Theme.of(context).colorScheme.secondary,
                           icon: Icons.clear_rounded,
                         ),
                       ),
                       InkWell(
                           onTap: () {context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
-                          print('left');
+                          print('right');
                           },
                           child: ChoiceButton(
-                            widht: 60,
-                            height: 60,
-                            size: 25,
                             color: Theme.of(context).colorScheme.secondary,
                             icon: Icons.favorite,
                           )),
                       ChoiceButton(
-                        widht: 60,
-                        height: 60,
-                        size: 25,
                         color: Theme.of(context).colorScheme.secondary,
                         icon: Icons.watch_later_outlined,
                       ),
