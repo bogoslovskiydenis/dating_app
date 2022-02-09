@@ -1,6 +1,7 @@
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_image_container.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class PictureScreen extends StatelessWidget {
   const PictureScreen({Key? key, required this.tabController})
@@ -35,10 +36,18 @@ class PictureScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 30,left: 30,bottom: 50),
-              child: CustomButton(
-                tabController: tabController,
-                text: 'Choice Photo to Next Step',
+              padding: const EdgeInsets.only(bottom: 20,right: 20,left: 20),
+              child: Column(
+                children: [
+                  const StepProgressIndicator(totalSteps: 6, currentStep: 5,
+                    selectedColor: Colors.red,
+                    unselectedColor: Colors.blue,),
+                  SizedBox(height: 20,),
+                  CustomButton(
+                    tabController: tabController,
+                    text: 'Choice Photo to Next Step',
+                  ),
+                ],
               ),
             ),
           ],

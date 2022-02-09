@@ -3,6 +3,7 @@ import 'package:dating_app/screens/login_screen/login_widget/custom_checkbox.dar
 import 'package:dating_app/screens/login_screen/login_widget/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class GenderScreen extends StatelessWidget {
   const GenderScreen({
@@ -14,7 +15,7 @@ class GenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50, right: 30, left: 30, top: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
@@ -51,9 +52,17 @@ class GenderScreen extends StatelessWidget {
               ),
             ],
           ),
-          CustomButton(
-            tabController: tabController,
-            text: 'Enter your Gender and Age to Next Step',
+          Column(
+            children: [
+              const StepProgressIndicator(totalSteps: 6, currentStep: 4,
+                selectedColor: Colors.red,
+                unselectedColor: Colors.blue,),
+              SizedBox(height: 20,),
+              CustomButton(
+                tabController: tabController,
+                text: 'Enter your Gender and Age to Next Step',
+              ),
+            ],
           ),
         ],
       ),

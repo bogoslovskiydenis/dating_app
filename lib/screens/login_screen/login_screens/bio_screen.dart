@@ -1,6 +1,7 @@
 import 'package:dating_app/screens/home/widget/custom_chips_container.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../login_widget/custom_text_field.dart';
 
@@ -12,7 +13,7 @@ class BiographyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50, right: 20, left:20),
+      padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -40,9 +41,17 @@ class BiographyScreen extends StatelessWidget {
               CustomChipsContainer(),
             ],
           ),
-          CustomButton(
-            tabController: tabController,
-            text: 'Enter Bio to Next Step',
+          Column(
+            children: [
+              const StepProgressIndicator(totalSteps: 6, currentStep: 6,
+                selectedColor: Colors.red,
+                unselectedColor: Colors.blue,),
+              SizedBox(height: 20,),
+              CustomButton(
+                tabController: tabController,
+                text: 'Enter Bio to Next Step',
+              ),
+            ],
           )
         ],
       ),
