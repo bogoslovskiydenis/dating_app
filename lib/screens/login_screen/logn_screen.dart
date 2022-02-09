@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
     Tab(text: 'Email Verification'),
     Tab(text: 'Gender'),
     Tab(text: 'Picture'),
-    // Tab(text: 'Location')
+    Tab(text: 'Biography')
   ];
 
   @override
@@ -45,6 +45,7 @@ class LoginScreen extends StatelessWidget {
             EmailVerification(tabController: tabController),
             GenderScreen(tabController: tabController),
             PictureScreen(tabController: tabController),
+            BiographyScreen(tabController: tabController),
           ],
         ),
       );
