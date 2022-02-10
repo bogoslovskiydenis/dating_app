@@ -8,9 +8,9 @@ class CustomImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10,top: 10,right: 10),
+      padding: const EdgeInsets.only(bottom: 10,right: 10),
       child: Container(
-        height: 150,
+        height: 120,
         width: 100,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

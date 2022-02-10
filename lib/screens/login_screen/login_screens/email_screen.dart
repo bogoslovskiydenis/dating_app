@@ -10,24 +10,34 @@ class EmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'What\' Your Email Address?',
                 style: Theme.of(context)
                     .textTheme
-                    .headline1!
+                    .headline2!
                     .copyWith(fontWeight: FontWeight.normal),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: CustomTextField(tabController: tabController, hint: 'Write yor mail here',),
+              SizedBox(height: 10,),
+               CustomTextField(controller: emailController, hint: 'Write yor email here',),
+              Text(
+                'What\' Your Password',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2!
+                    .copyWith(fontWeight: FontWeight.normal),
               ),
+                SizedBox(height: 10,),
+                CustomTextField(controller: passwordController, hint: 'Write yor password here',),
             ],
           ),
           Column(
@@ -39,6 +49,8 @@ class EmailScreen extends StatelessWidget {
               CustomButton(
                 tabController: tabController,
                 text: 'Enter your Mail to Next Step',
+                  emailController: emailController,
+                  passwordController: passwordController,
               ),
             ],
           ),

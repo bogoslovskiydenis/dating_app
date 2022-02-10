@@ -12,6 +12,8 @@ class BiographyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller =  TextEditingController();
+
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
@@ -28,8 +30,8 @@ class BiographyScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.normal),
               ),
               CustomTextField(
-                  tabController: tabController,
-                  hint: 'Enter your bio',
+                hint: 'Enter your bio',
+                controller: controller,
                 ),
               Text(
                 'What Do Dou like?',

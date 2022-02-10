@@ -5,11 +5,12 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../login_widget/custom_text_field.dart';
 
 class EmailVerification extends StatelessWidget {
-  const EmailVerification({Key? key, required this.tabController}) : super(key: key);
+   const EmailVerification({Key? key, required this.tabController}) : super(key: key);
   final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
+    final VerificationController =  TextEditingController();
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
@@ -26,7 +27,7 @@ class EmailVerification extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top:20),
-                child: CustomTextField(tabController: tabController, hint: 'Write yor Verification Code',),
+                child: CustomTextField(controller: VerificationController , hint: 'Write yor Verification Code',),
               ),
             ],
           ),

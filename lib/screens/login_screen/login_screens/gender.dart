@@ -6,16 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class GenderScreen extends StatelessWidget {
-  const GenderScreen({
-    Key? key,
-    required this.tabController,
-  }) : super(key: key);
+  const GenderScreen({Key? key, required this.tabController}) : super(key: key);
   final TabController tabController;
+
 
   @override
   Widget build(BuildContext context) {
+    final AgeController =  TextEditingController();
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
+      padding: const EdgeInsets.only( bottom: 20,right: 20,left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
@@ -47,8 +46,8 @@ class GenderScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.normal),
               ),
               CustomTextField(
-                hint: 'Enter your Age',
-                tabController: tabController,
+                hint: 'Enter your Age', controller: AgeController,
+
               ),
             ],
           ),
