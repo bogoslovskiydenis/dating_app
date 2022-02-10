@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRote,
-        initialRoute: LoginScreen.routeName,
+        initialRoute: HomeScreen.routeName,
       ),
     );
   }

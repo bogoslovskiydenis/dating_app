@@ -35,6 +35,8 @@ class UsersScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
+                    child: Hero(
+                      tag: 'user_image',
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
@@ -42,6 +44,7 @@ class UsersScreen extends StatelessWidget {
                             image: NetworkImage(user.imageUrls[0]),
                             fit: BoxFit.cover,
                           )),
+                    ),
                     ),
                   ),
                   Align(

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widget/choice_button.dart';
 import 'widget/custom_app_bar.dart';
-import 'widget/user_card.dart';
+import '../user_screen/widgets/user_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<SwipeBloc, SwipeState>(
         builder: (context, state) {
           if (state is SwipeLoading) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is SwipeLoaded) {
@@ -46,10 +46,10 @@ class HomeScreen extends StatelessWidget {
                     ),
                     onDragEnd: (drag) {
                       if (drag.velocity.pixelsPerSecond.dx < 0) {
-                        context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
+                        context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
                         print('left');
                       } else {
-                        context.read<SwipeBloc>()..add(SwipeRightEvent(user: state.users[0]));
+                        context.read<SwipeBloc>().add(SwipeRightEvent(user: state.users[0]));
                         print('right');
                       }
                     },
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
+                        onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
                         print('left');
                         },
                         child: ChoiceButton(
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                          onTap: () {context.read<SwipeBloc>()..add(SwipeLeftEvent(user: state.users[0]));
+                          onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
                           print('right');
                           },
                           child: ChoiceButton(
