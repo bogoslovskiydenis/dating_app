@@ -1,8 +1,11 @@
+import 'package:dating_app/cubit/signup_cubit.dart';
+import 'package:dating_app/repository/auth_repo.dart';
 import 'package:dating_app/screens/home/widget/custom_app_bar.dart';
 import 'package:dating_app/screens/login_screen/login_screens/bio_screen.dart';
 import 'package:dating_app/screens/login_screen/login_screens/email_screen.dart';
 import 'package:dating_app/screens/login_screen/login_screens/start_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'login_screens/email_screen_verification.dart';
 import 'login_screens/gender.dart';
@@ -15,7 +18,10 @@ class LoginScreen extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: RouteSettings(name: routeName),
-      builder: (context) => const LoginScreen(),
+      builder: (context) => BlocProvider(
+        create: (_) => SignupCubit(authRepo: context.read<AuthRepo>()),
+        child: const LoginScreen(),
+      ),
     );
   }
 
@@ -30,26 +36,30 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length: tabs.length,
-        child: Builder(builder: (BuildContext context){
-      final TabController tabController = DefaultTabController.of(context)!;
-      tabController.addListener(() {
-        if (!tabController.indexIsChanging) {}
-      });
-      return Scaffold(
-        appBar: const CustomAppBar(title: 'Dating', action: false,),
-        body: TabBarView(
-          children: [
-            Start(tabController: tabController),
-            EmailScreen(tabController: tabController),
-            EmailVerification(tabController: tabController),
-            GenderScreen(tabController: tabController),
-            PictureScreen(tabController: tabController),
-            BiographyScreen(tabController: tabController),
-          ],
-        ),
-      );
-    }),
+    return DefaultTabController(
+      length: tabs.length,
+      child: Builder(builder: (BuildContext context) {
+        final TabController tabController = DefaultTabController.of(context)!;
+        tabController.addListener(() {
+          if (!tabController.indexIsChanging) {}
+        });
+        return Scaffold(
+          appBar: const CustomAppBar(
+            title: 'Dating',
+            action: false,
+          ),
+          body: TabBarView(
+            children: [
+              Start(tabController: tabController),
+              EmailScreen(tabController: tabController),
+              EmailVerification(tabController: tabController),
+              GenderScreen(tabController: tabController),
+              PictureScreen(tabController: tabController),
+              BiographyScreen(tabController: tabController),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

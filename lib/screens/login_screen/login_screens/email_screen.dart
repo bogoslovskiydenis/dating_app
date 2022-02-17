@@ -1,5 +1,7 @@
+import 'package:dating_app/cubit/signup_cubit.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../login_widget/custom_text_field.dart';
@@ -10,8 +12,8 @@ class EmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    return BlocBuilder<SignupCubit, SignupState>(
+  builder: (context, state) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
       child: Column(
@@ -28,7 +30,12 @@ class EmailScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.normal),
               ),
               SizedBox(height: 10,),
-               CustomTextField(controller: emailController, hint: 'Write yor email here',),
+               CustomTextField( hint: 'Write yor email here',
+                   onChanged: (value){
+                     context.read<SignupCubit>().emailChanged(value);
+                     print(state.email);
+                   }
+               ),
               Text(
                 'What\' Your Password',
                 style: Theme.of(context)
@@ -37,7 +44,11 @@ class EmailScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.normal),
               ),
                 SizedBox(height: 10,),
-                CustomTextField(controller: passwordController, hint: 'Write yor password here',),
+                CustomTextField( hint: 'Write yor password here',
+                    onChanged: (value){
+                  context.read<SignupCubit>().passwordChanged(value);
+                  print(state.password);
+                }),
             ],
           ),
           Column(
@@ -49,13 +60,14 @@ class EmailScreen extends StatelessWidget {
               CustomButton(
                 tabController: tabController,
                 text: 'Enter your Mail to Next Step',
-                  emailController: emailController,
-                  passwordController: passwordController,
+
               ),
             ],
           ),
         ],
       ),
     );
+  },
+);
   }
 }
