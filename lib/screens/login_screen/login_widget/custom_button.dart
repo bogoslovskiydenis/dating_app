@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [Colors.red, Colors.blue],
         ),
       ),
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
           }
           tabController.animateTo(tabController.index + 1);
         },
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Center(child: Text(text)),
         ),
