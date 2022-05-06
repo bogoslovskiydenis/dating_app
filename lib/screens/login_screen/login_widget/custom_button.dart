@@ -4,13 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
-      {Key? key,
-        required this.tabController, this.text = 'Start',
-        })
+      {Key? key, required this.tabController, this.text = 'Start'})
       : super(key: key);
   final TabController tabController;
   final String text;
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +21,9 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style:
             ElevatedButton.styleFrom(elevation: 0, primary: Colors.transparent),
-        onPressed: () async{
+        onPressed: () async {
           tabController.animateTo(tabController.index + 1);
-          if(tabController.index ==2){
+          if (tabController.index == 2) {
             context.read<SignupCubit>().signupCredential();
           }
         },
