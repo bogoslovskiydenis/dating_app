@@ -1,3 +1,4 @@
+import 'package:dating_app/storage/storage_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -31,8 +32,11 @@ class CustomImageContainer extends StatelessWidget {
               if(_image == null) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('No image selected'),));
               }
-
-        },),)
+              if(_image != null) {
+                print('load pict');
+                StorageRepo().uploadImage(_image);
+              }
+              },),)
       ),
     );
   }
