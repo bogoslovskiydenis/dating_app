@@ -1,4 +1,4 @@
-import 'package:dating_app/bloc/swipe_bloc.dart';
+import 'package:dating_app/bloc/swipe_bloc/swipe_bloc.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

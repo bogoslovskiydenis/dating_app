@@ -1,5 +1,5 @@
 import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
-import 'package:dating_app/bloc/swipe_bloc.dart';
+import 'package:dating_app/bloc/swipe_bloc/swipe_bloc.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/repository/auth_repo.dart';
 import 'package:dating_app/routing/app_routing.dart';
