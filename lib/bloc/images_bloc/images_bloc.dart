@@ -16,6 +16,7 @@ class ImagesBloc extends Bloc<ImagesEvent, ImagesState> {
       : _databaseRepository = databaseRepository,
         super(ImagesLoading());
 
+  @override
   Stream<ImagesState> mapEventToStete(
     ImagesEvent event,
   ) async* {
@@ -25,16 +26,16 @@ class ImagesBloc extends Bloc<ImagesEvent, ImagesState> {
     if (event is UpdateImages) {
       yield* _mapUpdateImagesToState(event);
     }
-  }
+}
 
   Stream<ImagesState> _mapLoadImagesToState(LoadImages event) async* {
     _databaseSubsr?.cancel();
     _databaseRepository
         .getUser()
-        .listen((event) => add(UpdateImages(event.imageUrls)));
+        .listen((user) => add(UpdateImages(user.imageUrls)));
   }
 
   Stream<ImagesState> _mapUpdateImagesToState(UpdateImages event)async*{
-    yield ImagesLoaded(imageUrls: event.imagesUrls);
+    yield ImagesLoading(imageUrls: event.imagesUrls);
   }
 }

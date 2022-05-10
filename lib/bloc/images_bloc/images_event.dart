@@ -12,8 +12,8 @@ class LoadImages extends ImagesEvent{}
 class UpdateImages extends ImagesEvent{
   final List<dynamic> imagesUrls;
 
-  UpdateImages(this.imagesUrls);
+  const UpdateImages(this.imagesUrls);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [imagesUrls];
 }

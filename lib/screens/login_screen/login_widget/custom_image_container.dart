@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CustomImageContainer extends StatelessWidget {
-  const CustomImageContainer({Key? key, required this.tabController})
+  const CustomImageContainer({Key? key})
       : super(key: key);
-  final TabController tabController;
+ // final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
