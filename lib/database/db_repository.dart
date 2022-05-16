@@ -11,7 +11,7 @@ class DatabaseRepository extends BaseDatabaseRepository{
   @override
   Stream<User> getUser() {
    return _firebaseFirestore.collection('users')
-       .doc('Q6tnVBD0QBiEwScUFXyY')
+       .doc('W1vA0ovppxf50VOClOOF')
        .snapshots()
        .map((snapshot) => User.fromSnapshot(snapshot));
   }
@@ -20,7 +20,7 @@ class DatabaseRepository extends BaseDatabaseRepository{
   Future<void> updateUserPictires(String imageName)  async {
     String downloadUrl = await StorageRepo().getDownloadUrl(imageName);
     return _firebaseFirestore.collection('users')
-        .doc('Q6tnVBD0QBiEwScUFXyY')
+        .doc('W1vA0ovppxf50VOClOOF')
         .update({'imageUrls': FieldValue.arrayUnion([downloadUrl])});
   }
 }

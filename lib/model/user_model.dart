@@ -5,8 +5,8 @@ class User extends Equatable {
   final int id;
   final String name;
   final int age;
-  final List<String> imageUrls;
-  final List<String> interests;
+  final List<dynamic> imageUrls;
+  final List<dynamic> interests;
   final String bio;
   final String jobTitle;
 
@@ -24,7 +24,8 @@ class User extends Equatable {
   List<Object?> get props => [id, name, age, imageUrls, bio];
 
   static User fromSnapshot(DocumentSnapshot snapshot){
-    User user = User(id: snapshot['id'],
+    User user = User(
+        id: snapshot['id'],
         name: snapshot['name'],
         age: snapshot['age'],
         imageUrls: snapshot['imageUrls'],
