@@ -26,12 +26,12 @@ class LoginScreen extends StatelessWidget {
   }
 
   static const List<Tab> tabs = <Tab>[
-    Tab(text: 'Start'),
-    Tab(text: 'Email'),
-    Tab(text: 'Email Verification'),
-    Tab(text: 'Gender'),
+  //  Tab(text: 'Start'),
+  //  Tab(text: 'Email'),
+ //   Tab(text: 'Email Verification'),
+   // Tab(text: 'Gender'),
     Tab(text: 'Picture'),
-    Tab(text: 'Biography')
+   // Tab(text: 'Biography')
   ];
 
   @override
@@ -50,12 +50,12 @@ class LoginScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              Start(tabController: tabController),
-              EmailScreen(tabController: tabController),
-              EmailVerification(tabController: tabController),
-              GenderScreen(tabController: tabController),
+           //   Start(tabController: tabController),
+            //  EmailScreen(tabController: tabController),
+             // EmailVerification(tabController: tabController),
+            //  GenderScreen(tabController: tabController),
               PictureScreen(tabController: tabController),
-              BiographyScreen(tabController: tabController),
+             // BiographyScreen(tabController: tabController),
             ],
           ),
         );

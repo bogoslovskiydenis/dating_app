@@ -1,9 +1,7 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dating_app/database/base_db_repository.dart';
 import 'package:dating_app/model/user_model.dart';
 import 'package:dating_app/storage/storage_repository.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class DatabaseRepository extends BaseDatabaseRepository{
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

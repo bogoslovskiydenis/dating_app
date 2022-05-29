@@ -21,40 +21,40 @@ class PictureScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Add 2 or more Pictures', style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline1!
-                  .copyWith(fontWeight: FontWeight.normal),
+                'Add 2 or more Pictures',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(fontWeight: FontWeight.normal),
               ),
               BlocBuilder<ImagesBloc, ImagesState>(
                 builder: (context, state) {
-                  if(state is ImagesLoaded){
-                    return Center(child: CircularProgressIndicator(),);
-                  }
-
-                  if(state is ImagesLoading){
-                    return Column(
-                      children: [
-                        Row(children: [
-                          CustomImageContainer(),
-                          CustomImageContainer(),
-                          CustomImageContainer(),
-                        ],
-                        ),
-                        Row(children: [
-                          CustomImageContainer(),
-                          CustomImageContainer(),
-                          CustomImageContainer(),
-                        ],),
-                      ],
+                  if (state is ImagesLoading) {
+                    return Center(
+                      child: CustomImageContainer()
+                    );
+                  } else if (state is ImagesLoaded) {
+                    var imageCount = state.imageUrls.length;
+                    return SizedBox(
+                      height: 300,
+                      child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3, childAspectRatio: 0.66),
+                          itemCount: 6,
+                          itemBuilder: (BuildContext context, int index) {
+                            return imageCount > index
+                                ? CustomImageContainer(
+                                    imageUrls: state.imageUrls[index],
+                                  )
+                                : CustomImageContainer();
+                          }),
                     );
                   } else {
                     return Text('Wrong');
                   }
                 },
               ),
-
             ],
           ),
         ),
@@ -62,10 +62,15 @@ class PictureScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
           child: Column(
             children: [
-              const StepProgressIndicator(totalSteps: 6, currentStep: 5,
+              const StepProgressIndicator(
+                totalSteps: 6,
+                currentStep: 5,
                 selectedColor: Colors.red,
-                unselectedColor: Colors.blue,),
-              SizedBox(height: 20,),
+                unselectedColor: Colors.blue,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               CustomButton(
                 tabController: tabController,
                 text: 'Choice Photo to Next Step',

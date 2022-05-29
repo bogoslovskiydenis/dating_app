@@ -7,7 +7,6 @@ import 'package:dating_app/screens/match_screen/match_screen.dart';
 import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:dating_app/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 
 class AppRouter {
