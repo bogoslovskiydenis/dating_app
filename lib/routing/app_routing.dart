@@ -1,5 +1,3 @@
-import 'package:dating_app/model/models.dart';
-import 'package:dating_app/model/user_match.dart';
 import 'package:dating_app/screens/chat_screen/chat.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
@@ -8,12 +6,13 @@ import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:dating_app/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../model/models.dart';
 
 class AppRouter {
   static Route? onGenerateRote(RouteSettings settings) {
     print('The Route is: ${settings.name}');
 
-    switch (settings.name){
+    switch (settings.name) {
       case '/':
         return HomeScreen.route();
       case UsersScreen.routeName:
@@ -29,12 +28,12 @@ class AppRouter {
       default:
         return _errorRoute();
     }
-
-    }
+  }
 
   static Route _errorRoute() {
     return MaterialPageRoute(
       builder: (_) => Scaffold(appBar: AppBar(title: Text('error'))),
-      settings: RouteSettings(name: '/error'),);
+      settings: RouteSettings(name: '/error'),
+    );
   }
 }

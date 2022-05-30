@@ -1,9 +1,9 @@
-import 'package:dating_app/bloc/images_bloc/images_bloc.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import '../../../bloc/blocks.dart';
 
 class PictureScreen extends StatelessWidget {
   const PictureScreen({Key? key, required this.tabController})
@@ -27,13 +27,14 @@ class PictureScreen extends StatelessWidget {
                     .headline1!
                     .copyWith(fontWeight: FontWeight.normal),
               ),
+              // TODO : Check problem with can download picture in Grid from Firebase
               BlocBuilder<ImagesBloc, ImagesState>(
                 builder: (context, state) {
                   if (state is ImagesLoading) {
                     return Center(
                       child: CustomImageContainer()
                     );
-                  } else if (state is ImagesLoaded) {
+                  }  if (state is ImagesLoaded) {
                     var imageCount = state.imageUrls.length;
                     return SizedBox(
                       height: 300,

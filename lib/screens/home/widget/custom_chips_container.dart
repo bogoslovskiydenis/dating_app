@@ -1,5 +1,6 @@
-import 'package:dating_app/model/user_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../../model/user_model.dart';
 
 class CustomChipsContainer extends StatelessWidget {
   const CustomChipsContainer({Key? key}) : super(key: key);
@@ -15,9 +16,7 @@ class CustomChipsContainer extends StatelessWidget {
               margin: const EdgeInsets.all(5.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  gradient: LinearGradient(colors: [
-                    Colors.red, Colors.blue
-                  ])),
+                  gradient: LinearGradient(colors: [Colors.red, Colors.blue])),
               child: Text(
                 interest,
                 style: Theme.of(context)

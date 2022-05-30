@@ -7,9 +7,9 @@ abstract class ImagesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadImages extends ImagesEvent{}
+class LoadImages extends ImagesEvent {}
 
-class UpdateImages extends ImagesEvent{
+class UpdateImages extends ImagesEvent {
   final List<dynamic> imageUrls;
 
   const UpdateImages(this.imageUrls);

@@ -1,6 +1,6 @@
-import 'package:dating_app/storage/storage_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../repository/repositories.dart';
 
 class CustomImageContainer extends StatelessWidget {
   const CustomImageContainer({Key? key, this.imageUrls})

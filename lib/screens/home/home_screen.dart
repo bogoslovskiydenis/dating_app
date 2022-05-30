@@ -1,10 +1,9 @@
 import 'package:dating_app/bloc/swipe_bloc/swipe_bloc.dart';
-import 'package:dating_app/model/models.dart';
+import 'package:dating_app/screens/home/widget/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widget/choice_button.dart';
-import 'widget/custom_app_bar.dart';
+import '../../model/user_model.dart';
 import '../user_screen/widgets/user_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,7 +20,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'DATING',),
+      appBar: const CustomAppBar(
+        title: 'DATING',
+      ),
       body: BlocBuilder<SwipeBloc, SwipeState>(
         builder: (context, state) {
           if (state is SwipeLoading) {
@@ -31,8 +32,10 @@ class HomeScreen extends StatelessWidget {
           } else if (state is SwipeLoaded) {
             return Column(
               children: [
-                InkWell( onDoubleTap: () {
-                  Navigator.pushNamed(context, '/users', arguments: state.users[0]);
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.pushNamed(context, '/users',
+                        arguments: state.users[0]);
                   },
                   child: Draggable<User>(
                     child: UserCard(
@@ -46,10 +49,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                     onDragEnd: (drag) {
                       if (drag.velocity.pixelsPerSecond.dx < 0) {
-                        context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
+                        context
+                            .read<SwipeBloc>()
+                            .add(SwipeLeftEvent(user: state.users[0]));
                         print('left');
                       } else {
-                        context.read<SwipeBloc>().add(SwipeRightEvent(user: state.users[0]));
+                        context
+                            .read<SwipeBloc>()
+                            .add(SwipeRightEvent(user: state.users[0]));
                         print('right');
                       }
                     },
@@ -62,8 +69,11 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
-                        print('left');
+                        onTap: () {
+                          context
+                              .read<SwipeBloc>()
+                              .add(SwipeLeftEvent(user: state.users[0]));
+                          print('left');
                         },
                         child: ChoiceButton(
                           color: Theme.of(context).colorScheme.secondary,
@@ -71,8 +81,11 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                          onTap: () {context.read<SwipeBloc>().add(SwipeLeftEvent(user: state.users[0]));
-                          print('right');
+                          onTap: () {
+                            context
+                                .read<SwipeBloc>()
+                                .add(SwipeLeftEvent(user: state.users[0]));
+                            print('right');
                           },
                           child: ChoiceButton(
                             color: Theme.of(context).colorScheme.secondary,

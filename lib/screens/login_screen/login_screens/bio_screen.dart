@@ -1,8 +1,7 @@
-import 'package:dating_app/screens/home/widget/custom_chips_container.dart';
-import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
+import 'package:dating_app/screens/home/widget/home.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-
+import '../login_widget/custom_button.dart';
 import '../login_widget/custom_text_field.dart';
 
 class BiographyScreen extends StatelessWidget {

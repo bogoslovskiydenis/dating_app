@@ -1,7 +1,8 @@
 import 'package:dating_app/model/user_match.dart';
-import 'package:dating_app/screens/home/widget/custom_app_bar.dart';
 import 'package:dating_app/screens/user_screen/widgets/user_small_image.dart';
 import 'package:flutter/material.dart';
+
+import '../home/widget/home.dart';
 
 class MatchesScreen extends StatelessWidget {
   static const String routeName = '/matches';

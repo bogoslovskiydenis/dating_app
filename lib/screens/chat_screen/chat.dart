@@ -1,6 +1,5 @@
-import 'package:dating_app/model/user_match.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../model/user_match.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key, required this.userMatch}) : super(key: key);

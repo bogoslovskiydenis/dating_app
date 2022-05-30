@@ -1,10 +1,13 @@
 import 'package:dating_app/model/models.dart';
-import 'package:dating_app/screens/home/widget/choice_button.dart';
-import 'package:dating_app/screens/home/widget/custom_chips_container.dart';
 import 'package:flutter/material.dart';
 
+import '../home/widget/home.dart';
+
 class UsersScreen extends StatelessWidget {
-  const UsersScreen({Key? key, required this.user,}) : super(key: key);
+  const UsersScreen({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   static const String routeName = '/users';
 
@@ -37,14 +40,14 @@ class UsersScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: Hero(
                       tag: 'user_image',
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          image: DecorationImage(
-                            image: NetworkImage(user.imageUrls[0]),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            image: DecorationImage(
+                              image: NetworkImage(user.imageUrls[0]),
+                              fit: BoxFit.cover,
+                            )),
+                      ),
                     ),
                   ),
                   Align(
@@ -74,7 +77,8 @@ class UsersScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -89,7 +93,9 @@ class UsersScreen extends StatelessWidget {
                         .headline4!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Text(
                     'About',
                     style: Theme.of(context).textTheme.headline3,
@@ -101,7 +107,9 @@ class UsersScreen extends StatelessWidget {
                           height: 2,
                         ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Text(
                     'Interests',
                     style: Theme.of(context).textTheme.headline3,

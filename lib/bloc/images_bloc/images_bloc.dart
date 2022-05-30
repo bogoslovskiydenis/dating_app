@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dating_app/database/db_repository.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../repository/database/db_repository.dart';
 
 part 'images_event.dart';
 
@@ -25,7 +26,7 @@ class ImagesBloc extends Bloc<ImagesEvent, ImagesState> {
     if (event is UpdateImages) {
       yield* _mapUpdateImagesToState(event);
     }
-}
+  }
 
   Stream<ImagesState> _mapLoadImagesToState(LoadImages event) async* {
     _databaseSubsr?.cancel();
@@ -34,7 +35,7 @@ class ImagesBloc extends Bloc<ImagesEvent, ImagesState> {
         .listen((user) => add(UpdateImages(user.imageUrls)));
   }
 
-  Stream<ImagesState> _mapUpdateImagesToState(UpdateImages event)async*{
+  Stream<ImagesState> _mapUpdateImagesToState(UpdateImages event) async* {
     yield ImagesLoaded(imageUrls: event.imageUrls);
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title, this.action=true}) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, this.action = true})
+      : super(key: key);
   final String title;
   final bool action;
 
@@ -16,12 +17,13 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
-           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
                 child: Image.asset(
-              'assets/emblem.jpg',height: 60,
-                )),
+              'assets/emblem.jpg',
+              height: 60,
+            )),
             Expanded(
               flex: 2,
               child: Text(
@@ -35,24 +37,26 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             )
           ],
         ),
-        actions:  action ? [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/matches');
-              },
-              icon: Icon(
-                Icons.message,
-                color: Theme.of(context).primaryColor,
-              )),
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/profile');
-              },
-              icon: Icon(
-                Icons.person,
-                color: Theme.of(context).primaryColor,
-              )),
-        ] : null,
+        actions: action
+            ? [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/matches');
+                    },
+                    icon: Icon(
+                      Icons.message,
+                      color: Theme.of(context).primaryColor,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                    icon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).primaryColor,
+                    )),
+              ]
+            : null,
       ),
     );
   }

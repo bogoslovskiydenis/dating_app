@@ -1,4 +1,4 @@
-import 'package:dating_app/repository/base_auth_rep.dart';
+import 'package:dating_app/repository/auth/base_auth_rep.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AuthRepo extends BaseAuthRepo{
@@ -17,7 +17,6 @@ class AuthRepo extends BaseAuthRepo{
   }
 
   @override
-  // TODO: implement user
   Stream<auth.User?> get user => _firebaseAuth.userChanges();
   
 }

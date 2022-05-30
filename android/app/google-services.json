@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "3200036265",
-    "project_id": "dating-app-2d2ec",
-    "storage_bucket": "dating-app-2d2ec.appspot.com"
+    "project_number": "449766472937",
+    "project_id": "dating-app-da7ee",
+    "storage_bucket": "dating-app-da7ee.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3200036265:android:be116492ec76af620ee8b8",
+        "mobilesdk_app_id": "1:449766472937:android:0770d9b79f273201384478",
         "android_client_info": {
           "package_name": "com.example.dating_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "3200036265-ntf2vsh3b4jfglmbbf7jvsts3gvj3gl0.apps.googleusercontent.com",
+          "client_id": "449766472937-c74ocu095ps95k8otjqfb3j6nm22kg3f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCecePZJzpQh4cFHTHIw4eDqBZcswnvUnE"
+          "current_key": "AIzaSyBtHoRhBQbgwUCr-VVspD51qQ-rHZDKv4k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "3200036265-ntf2vsh3b4jfglmbbf7jvsts3gvj3gl0.apps.googleusercontent.com",
+              "client_id": "449766472937-c74ocu095ps95k8otjqfb3j6nm22kg3f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

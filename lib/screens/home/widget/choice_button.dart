@@ -9,9 +9,9 @@ class ChoiceButton extends StatelessWidget {
 
   const ChoiceButton(
       {Key? key,
-       this.widht = 60,
+      this.widht = 60,
       this.height = 60,
-       this.size = 25,
+      this.size = 25,
       required this.color,
       required this.icon})
       : super(key: key);
@@ -21,14 +21,17 @@ class ChoiceButton extends StatelessWidget {
     return Container(
       width: widht,
       height: height,
-      decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white, boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withAlpha(50),
-          spreadRadius: 4,
-          blurRadius: 4,
-          offset: Offset(3, 3),
-        )
-      ]),
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withAlpha(50),
+              spreadRadius: 4,
+              blurRadius: 4,
+              offset: Offset(3, 3),
+            )
+          ]),
       child: Icon(
         icon,
         color: color,

@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-
-import 'chat.dart';
 import 'models.dart';
 
 class UserMatch extends Equatable {
