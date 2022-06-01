@@ -2,15 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int id;
+  final String? id;
   final String name;
   final int age;
   final List<dynamic> imageUrls;
   final List<dynamic> interests;
   final String bio;
   final String jobTitle;
+  final String gender;
+  final String location;
 
   const User({
+    required this.gender,
+    required this.location,
     required this.id,
     required this.name,
     required this.age,
@@ -21,24 +25,64 @@ class User extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, name, age, imageUrls, bio];
+  List<Object?> get props =>
+      [id, name, age, imageUrls, bio, gender, location, interests, jobTitle];
 
-  static User fromSnapshot(DocumentSnapshot snapshot){
+  static User fromSnapshot(DocumentSnapshot snapshot) {
     User user = User(
-        id: snapshot['id'],
-        name: snapshot['name'],
-        age: snapshot['age'],
-        imageUrls: snapshot['imageUrls'],
-        bio: snapshot['bio'],
-        interests:snapshot['interests'],
-        jobTitle: snapshot['jobTitle'],
-        );
+      gender: snapshot['gender'],
+      location: snapshot['location'],
+      id: snapshot.id,
+      name: snapshot['name'],
+      age: snapshot['age'],
+      imageUrls: snapshot['imageUrls'],
+      bio: snapshot['bio'],
+      interests: snapshot['interests'],
+      jobTitle: snapshot['jobTitle'],
+    );
     return user;
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'name ': name,
+      'age': age,
+      'gender': gender,
+      'imageUrls': imageUrls,
+      'interests': interests,
+      'location': location,
+      'bio': bio,
+      'jobTitle': jobTitle,
+    };
+  }
+
+  User copyWith({
+    String? name,
+    String? id,
+    int? age,
+    List<dynamic>? imageUrls,
+    List<dynamic>? interests,
+    String? bio,
+    String? jobTitle,
+    String? gender,
+    String? location,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      age: age ?? this.age,
+      gender: gender ?? this.gender,
+      imageUrls: imageUrls ?? this.imageUrls,
+      interests: interests ?? this.interests,
+      bio: bio ?? this.bio,
+      jobTitle: jobTitle ?? this.jobTitle,
+      location: location ?? this.location,
+    );
+  }
+
   static List<User> users = [
-    User(
-      id: 1,
+    const User(
+      id: '1',
       name: 'John',
       age: 25,
       imageUrls: [
@@ -52,9 +96,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Male',
+      location: 'Ukraine',
     ),
-    User(
-      id: 2,
+    const User(
+      id: '2',
       name: 'Tamara',
       age: 30,
       imageUrls: [
@@ -68,9 +114,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      location: 'Ukraine',
+      gender: 'Famel',
     ),
-    User(
-      id: 3,
+    const User(
+      id: '3',
       name: 'Marta',
       age: 35,
       imageUrls: [
@@ -84,9 +132,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      location: 'Ukraine',
+      gender: 'Famel',
     ),
-    User(
-      id: 4,
+    const User(
+      id: '4',
       name: 'Sara',
       age: 30,
       imageUrls: [
@@ -100,9 +150,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      location: 'Ukraine',
+      gender: 'Famel',
     ),
-    User(
-      id: 5,
+    const User(
+      id: '5',
       name: 'Anna',
       age: 35,
       imageUrls: [
@@ -116,9 +168,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
-    User(
-      id: 6,
+    const User(
+      id: '6',
       name: 'Lisa',
       age: 35,
       imageUrls: [
@@ -126,14 +180,17 @@ class User extends Equatable {
         'https://picsum.photos/250?image=5',
         'https://picsum.photos/250?image=5',
         'https://picsum.photos/250?image=5',
-        'https://picsum.photos/250?image=5',],
+        'https://picsum.photos/250?image=5',
+      ],
       jobTitle: 'Job Title Here',
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      location: 'Ukraine',
+      gender: 'Famel',
     ),
-    User(
-      id: 7,
+    const User(
+      id: '7',
       name: 'Luisa',
       age: 35,
       imageUrls: [
@@ -147,9 +204,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
-    User(
-      id: 8,
+    const User(
+      id: '8',
       name: 'Sara',
       age: 35,
       imageUrls: [
@@ -163,23 +222,29 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
-    User(
-      id: 9,
+    const User(
+      id: '9',
       name: 'Andrea',
       age: 35,
-      imageUrls: [ 'https://picsum.photos/250?image=7',
+      imageUrls: [
         'https://picsum.photos/250?image=7',
         'https://picsum.photos/250?image=7',
         'https://picsum.photos/250?image=7',
-        'https://picsum.photos/250?image=7',],
+        'https://picsum.photos/250?image=7',
+        'https://picsum.photos/250?image=7',
+      ],
       jobTitle: 'Job Title Here',
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
-    User(
-      id: 10,
+    const User(
+      id: '10',
       name: 'Mary',
       age: 35,
       imageUrls: [
@@ -193,9 +258,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      location: 'Ukraine',
+      gender: 'Famel',
     ),
-    User(
-      id: 11,
+    const User(
+      id: '11',
       name: 'Denise',
       age: 35,
       imageUrls: [
@@ -209,9 +276,11 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
-    User(
-      id: 12,
+    const User(
+      id: ' 12',
       name: 'Elle',
       age: 35,
       imageUrls: [
@@ -225,6 +294,8 @@ class User extends Equatable {
       interests: ['Music', 'Economics', 'Football'],
       bio:
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      gender: 'Famel',
+      location: 'Ukraine',
     ),
   ];
 }
