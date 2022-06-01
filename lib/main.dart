@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => SwipeBloc()
               ..add(
-                LoadUsersEvent(
+                LoadUsers(
                   users: User.users.where((user) => user.id != 1).toList(),
                 ),
               ),

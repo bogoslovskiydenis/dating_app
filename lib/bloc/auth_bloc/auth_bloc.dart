@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dating_app/model/models.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
 
@@ -17,22 +16,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc({required AuthRepo authRepo})
       : _authRepo = authRepo,
-        super(AuthState.unknown()
-      ) {
+        super(AuthState.unknown()) {
     _userSubscription = _authRepo.user.listen((user) {
       add(AuthUserChanged(user: user!));
     });
-    on<AuthEvent>((event, emit) async {
-      if (event is AuthUserChanged) {
-        AuthState.authenticated(user: event.user);
-      }
+    on<AuthUserChanged>((AuthUserChanged event, Emitter<AuthState> emit) {
+      emit(AuthState.authenticated(user: event.user));
     });
   }
 
   @override
-  Future<void> close(){
+  Future<void> close() {
     _userSubscription?.cancel();
     return super.close();
   }
 }
-
