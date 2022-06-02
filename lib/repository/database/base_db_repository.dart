@@ -1,7 +1,11 @@
 import '../../model/user_model.dart';
 
 abstract class BaseDatabaseRepository {
-  Stream<User> getUser();
+  Stream<User> getUser(String id);
 
-  Future<void> updateUserPictires(String imageName);
+  Future<String> createUser(User user);
+
+  Future<void> updateUser(User user);
+
+  Future<void> updateUserPictires(User user, String imageName);
 }

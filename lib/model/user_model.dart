@@ -28,7 +28,7 @@ class User extends Equatable {
   List<Object?> get props =>
       [id, name, age, imageUrls, bio, gender, location, interests, jobTitle];
 
-  static User fromSnapshot(DocumentSnapshot snapshot) {
+  static User fromDocument(DocumentSnapshot snapshot) {
     User user = User(
       gender: snapshot['gender'],
       location: snapshot['location'],
@@ -45,7 +45,8 @@ class User extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'name ': name,
+      'id': id,
+      'name': name,
       'age': age,
       'gender': gender,
       'imageUrls': imageUrls,

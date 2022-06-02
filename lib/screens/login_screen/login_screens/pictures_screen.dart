@@ -1,9 +1,10 @@
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
-import 'package:dating_app/screens/login_screen/login_widget/custom_image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+
 import '../../../bloc/blocks.dart';
+import '../login_widget/custom_image_container.dart';
 
 class PictureScreen extends StatelessWidget {
   const PictureScreen({Key? key, required this.tabController})
@@ -12,74 +13,77 @@ class PictureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Add 2 or more Pictures',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1!
-                    .copyWith(fontWeight: FontWeight.normal),
-              ),
-              // TODO : Check problem with can download picture in Grid from Firebase
-              BlocBuilder<ImagesBloc, ImagesState>(
-                builder: (context, state) {
-                  if (state is ImagesLoading) {
-                    return Center(
-                      child: CustomImageContainer()
-                    );
-                  }  if (state is ImagesLoaded) {
-                    var imageCount = state.imageUrls.length;
-                    return SizedBox(
-                      height: 300,
-                      child: GridView.builder(
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        if (state is LoginLoading) {
+          return const Center(
+            child: const CircularProgressIndicator(),
+          );
+        }
+        if (state is LoginLoaded) {
+          var images = state.user.imageUrls;
+          var imageCount = images.length;
+          return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only( right: 20, left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Add 2 or more Pictures',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .copyWith(fontWeight: FontWeight.normal),
+                      ),
+                      //TODO : not download photo to firebase ....
+                      SizedBox(
+                        height: 350,
+                        child: GridView.builder(
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3, childAspectRatio: 0.66),
                           itemCount: 6,
                           itemBuilder: (BuildContext context, int index) {
-                            return imageCount > index
+                            return (imageCount > index)
                                 ? CustomImageContainer(
-                                    imageUrls: state.imageUrls[index],
+                                    imageUrls: images[index],
                                   )
-                                : CustomImageContainer();
-                          }),
-                    );
-                  } else {
-                    return Text('Wrong');
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
-          child: Column(
-            children: [
-              const StepProgressIndicator(
-                totalSteps: 6,
-                currentStep: 5,
-                selectedColor: Colors.red,
-                unselectedColor: Colors.blue,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomButton(
-                tabController: tabController,
-                text: 'Choice Photo to Next Step',
-              ),
-            ],
-          ),
-        ),
-      ],
+                                : const CustomImageContainer();
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                             top: 90),
+                        child: Column(
+                          children: [
+                            const StepProgressIndicator(
+                              totalSteps: 6,
+                              currentStep: 5,
+                              selectedColor: Colors.red,
+                              unselectedColor: Colors.blue,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            CustomButton(
+                              tabController: tabController,
+                              text: 'Choice Photo to Next Step',
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ]);
+        } else {
+          return Text('Something Wrong');
+        }
+      },
     );
   }
 }

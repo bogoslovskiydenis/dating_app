@@ -38,12 +38,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
           ),
-          BlocProvider(
-              create: (_) =>
-                  ImagesBloc(databaseRepository: DatabaseRepository())
-                    ..add(
-                      LoadImages(),
-                    ))
+
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

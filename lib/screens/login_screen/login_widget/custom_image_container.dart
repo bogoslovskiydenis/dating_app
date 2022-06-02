@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../repository/repositories.dart';
+import '../../../bloc/blocks.dart';
 
 class CustomImageContainer extends StatelessWidget {
   const CustomImageContainer({Key? key, this.imageUrls})
@@ -42,16 +45,16 @@ class CustomImageContainer extends StatelessWidget {
                   .colorScheme
                   .secondary,)
               , onPressed: () async {
-              ImagePicker _imagePicker = ImagePicker();
-              final XFile? _image = await _imagePicker.pickImage(
+              ImagePicker _picker = ImagePicker();
+              final XFile? image = await _picker.pickImage(
                   source: ImageSource.gallery);
-              if (_image == null) {
+              if (image == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('No image selected'),));
               }
-              if (_image != null) {
-                print('load pict');
-                StorageRepo().uploadImage(_image);
+              if (image != null) {
+                log('load pict');
+                context.read<LoginBloc>().add(UpdateUserImages(image: image));
               }
             },
             ),
