@@ -1,6 +1,8 @@
+import 'package:dating_app/cubit/signup_cubit.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
+import 'package:dating_app/screens/splash_scren/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,28 +25,37 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (_) => AuthRepo(),
+          create: (context) => AuthRepo(),
         )
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => AuthBloc(authRepo: context.read<AuthRepo>())),
+              create: (context) => AuthBloc(authRepo: context.read<AuthRepo>())),
           BlocProvider(
-            create: (_) => SwipeBloc()
+            create: (context) => SwipeBloc()
               ..add(
                 LoadUsers(
                   users: User.users.where((user) => user.id != 1).toList(),
                 ),
               ),
           ),
-
+          BlocProvider<SignupCubit>(
+            create: (context) => SignupCubit(authRepo: context.read<AuthRepo>(), ),
+            child:  LoginScreen(),
+          ),
+          BlocProvider<LoginBloc>(
+            create: (context) => LoginBloc(
+              databaseRepository: DatabaseRepository(),
+              storageRepo: StorageRepo(),
+            ),
+          )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: theme(),
           onGenerateRoute: AppRouter.onGenerateRote,
-          initialRoute: LoginScreen.routeName,
+          initialRoute: SplashScreen.routeName,
         ),
       ),
     );

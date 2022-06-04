@@ -25,23 +25,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _onStartLogin(StartLogin event, Emitter<LoginState> emit) async {
-    User user = const User(
-      id: '',
-      age: 0,
-      location: '',
-      name: '',
-      gender: '',
-      bio: '',
-      jobTitle: '',
-      imageUrls: [],
-      interests: [],
-    );
-
-    String docId = await _databaseRepository.createUser(user);
+    await _databaseRepository.createUser(event.user!);
     emit(
-      LoginLoaded(
-        user: user.copyWith(id: docId),
-      ),
+      LoginLoaded(user: event.user!),
     );
   }
 
