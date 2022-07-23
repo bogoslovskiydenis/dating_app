@@ -1,7 +1,6 @@
 import 'package:dating_app/cubit/signup_cubit.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
-import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/splash_scren/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +41,6 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<SignupCubit>(
             create: (context) => SignupCubit(authRepo: context.read<AuthRepo>(), ),
-            child:  LoginScreen(),
           ),
           BlocProvider<LoginBloc>(
             create: (context) => LoginBloc(

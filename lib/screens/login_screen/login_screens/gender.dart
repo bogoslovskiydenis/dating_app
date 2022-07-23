@@ -1,7 +1,6 @@
 import 'package:dating_app/bloc/blocks.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_checkbox.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_text_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -16,7 +15,7 @@ class GenderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       if (state is LoginLoading) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
@@ -88,7 +87,7 @@ class GenderScreen extends StatelessWidget {
                           const StepProgressIndicator(totalSteps: 6, currentStep: 4,
                             selectedColor: Colors.red,
                             unselectedColor: Colors.blue,),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           CustomButton(
                             tabController: tabController,
                             text: 'Enter your Gender and Age to Next Step',
@@ -103,7 +102,7 @@ class GenderScreen extends StatelessWidget {
           ),
         );
       } else {
-      return  Text('Something wrong');
+      return  const Text('Something wrong');
       }
     });
   }

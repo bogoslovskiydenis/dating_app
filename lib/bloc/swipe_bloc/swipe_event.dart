@@ -20,7 +20,7 @@ class LoadUsers extends SwipeEvent {
 class SwipeLeftEvent extends SwipeEvent {
   final User user;
 
-  SwipeLeftEvent({required this.user});
+  const SwipeLeftEvent({required this.user});
 
   @override
   List<Object> get props => [user];

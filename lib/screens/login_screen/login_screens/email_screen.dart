@@ -29,7 +29,7 @@ class EmailScreen extends StatelessWidget {
                     .headline2!
                     .copyWith(fontWeight: FontWeight.normal),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
                CustomTextField( hint: 'Write yor email here',
                    onChanged: (value){
                      context.read<SignupCubit>().emailChanged(value);
@@ -43,7 +43,7 @@ class EmailScreen extends StatelessWidget {
                     .headline2!
                     .copyWith(fontWeight: FontWeight.normal),
               ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 CustomTextField( hint: 'Write yor password here',
                     onChanged: (value){
                   context.read<SignupCubit>().passwordChanged(value);
@@ -56,7 +56,7 @@ class EmailScreen extends StatelessWidget {
               const StepProgressIndicator(totalSteps: 6, currentStep: 1,
                 selectedColor: Colors.red,
                 unselectedColor: Colors.blue,),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               CustomButton(
                 tabController: tabController,
                 text: 'Enter your Mail to Next Step',

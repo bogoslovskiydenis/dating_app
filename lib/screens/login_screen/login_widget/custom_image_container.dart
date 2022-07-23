@@ -50,7 +50,7 @@ class CustomImageContainer extends StatelessWidget {
                   source: ImageSource.gallery);
               if (image == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('No image selected'),));
+                    const SnackBar(content: Text('No image selected'),));
               }
               if (image != null) {
                 log('load pict');

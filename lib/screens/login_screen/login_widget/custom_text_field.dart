@@ -15,10 +15,10 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         hintText: hint,
-        enabledBorder:  OutlineInputBorder(
+        enabledBorder:  const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
           borderRadius: BorderRadius.all(Radius.circular(8.0),),
-        ), focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),
+        ), focusedBorder:  const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),
         borderRadius: BorderRadius.all(Radius.circular(8.0),),),),
       onChanged: onChanged,
     );

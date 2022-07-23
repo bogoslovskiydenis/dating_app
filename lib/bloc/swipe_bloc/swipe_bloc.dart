@@ -11,7 +11,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
   SwipeBloc() : super(SwipeLoading()) {
     on<LoadUsers>(_onLoadUsers);
     on<SwipeLeftEvent>(_onSwipeLeftEvent);
-    on<SwipeRightEvent>(_SwipeRightEvent);
+    on<SwipeRightEvent>(_swipeRightEvent);
   }
 
   void _onLoadUsers(LoadUsers event, Emitter<SwipeState> emit) {
@@ -29,7 +29,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
     }
   }
 
-  void _SwipeRightEvent(
+  void _swipeRightEvent(
     SwipeRightEvent event,
     Emitter<SwipeState> emit,
   ) {

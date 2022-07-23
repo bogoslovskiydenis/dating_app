@@ -8,9 +8,9 @@ abstract class LoginEvent extends Equatable {
 }
 
 class StartLogin extends LoginEvent {
-  final User? user;
+  final User user;
 
-  StartLogin(
+  const StartLogin(
       {this.user = const User(
         id: '',
         name: '',
@@ -38,7 +38,7 @@ class UpdateUserLogin extends LoginEvent {
 
 class UpdateUserImages extends LoginEvent {
   final User? user;
-  final XFile image;
+  final XFile? image;
 
   const UpdateUserImages({required this.image, this.user});
 

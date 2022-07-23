@@ -17,7 +17,7 @@ class PictureScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is LoginLoading) {
           return const Center(
-            child: const CircularProgressIndicator(),
+            child: CircularProgressIndicator(),
           );
         }
         if (state is LoginLoaded) {
@@ -83,7 +83,7 @@ class PictureScreen extends StatelessWidget {
                 ]),
           );
         } else {
-          return Text('Something Wrong');
+          return const Text('Something Wrong');
         }
       },
     );

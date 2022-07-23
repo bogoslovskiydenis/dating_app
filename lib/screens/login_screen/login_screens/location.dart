@@ -19,7 +19,7 @@ class Location extends StatelessWidget {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           if(state is LoginLoading){
-            return Center(child: CircularProgressIndicator(),);
+            return const Center(child: CircularProgressIndicator(),);
           }
           if(state is LoginLoaded){
 
@@ -58,7 +58,7 @@ class Location extends StatelessWidget {
                   const StepProgressIndicator(totalSteps: 6, currentStep: 2,
                     selectedColor: Colors.red,
                     unselectedColor: Colors.blue,),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   CustomButton(
                     tabController: tabController,
                     text: 'Enter your Location to Next Step',
@@ -67,7 +67,7 @@ class Location extends StatelessWidget {
               )
             ],
           );
-          }else {return Text('Something Wrong');}
+          }else {return const Text('Something Wrong');}
         },
       ),
     );

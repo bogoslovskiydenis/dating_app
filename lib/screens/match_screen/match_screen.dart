@@ -12,7 +12,7 @@ class MatchesScreen extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (context) => MatchesScreen(),
+      builder: (context) => const MatchesScreen(),
     );
   }
 

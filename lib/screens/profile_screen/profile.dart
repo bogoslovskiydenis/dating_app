@@ -17,10 +17,10 @@ class ProfileScreen extends StatelessWidget {
         settings: const RouteSettings(name: routeName),
         builder: (context) {
           print(BlocProvider.of<AuthBloc>(context).state.status);
-          return (BlocProvider.of<AuthBloc>(context).state.status) ==
-                  AuthStatus.unauthenticated
-              ? LoginScreen()
-              : ProfileScreen();
+          return (BlocProvider.of<AuthBloc>(context).state.status ==
+                  AuthStatus.unauthenticated)
+              ? const LoginScreen()
+              : const ProfileScreen();
         });
   }
 
@@ -28,12 +28,12 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final User user = User.users[0];
     return Scaffold(
-      appBar: CustomAppBar(title: "Profile"),
+      appBar: const CustomAppBar(title: "Profile"),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             Stack(
@@ -108,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
                           return Container(
                             height: 80,
                             width: 80,
-                            padding: EdgeInsets.only(right: 5.0),
+                            padding: const EdgeInsets.only(right: 5.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
                               image: DecorationImage(
@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                     title: 'Interest',
                     icon: Icons.edit,
                   ),
-                  CustomChipsContainer(),
+                  const CustomChipsContainer(),
                   TextButton(
                       onPressed: () {
                         RepositoryProvider.of<AuthRepo>(context).signOut();

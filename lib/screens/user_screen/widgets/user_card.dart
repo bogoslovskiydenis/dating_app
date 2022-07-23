@@ -29,7 +29,7 @@ class UserCard extends StatelessWidget {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 4,
                           blurRadius: 4,
-                          offset: Offset(3, 3))
+                          offset: const Offset(3, 3))
                     ]),
               ),
               Container(
@@ -58,7 +58,7 @@ class UserCard extends StatelessWidget {
                           .copyWith(color: Colors.white),
                     ),
                     Text(
-                      '${user.jobTitle}',
+                      user.jobTitle,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
                           color: Colors.white, fontWeight: FontWeight.normal),
                     ),
@@ -68,14 +68,14 @@ class UserCard extends StatelessWidget {
                         UserImageSmall(url: user.imageUrls[2]),
                         UserImageSmall(url: user.imageUrls[3]),
                         UserImageSmall(url: user.imageUrls[4]),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Container(
                             width: 35,height: 35,
-                            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                            decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                             child: Icon(
                               Icons.info_outline,
                               size: 25,

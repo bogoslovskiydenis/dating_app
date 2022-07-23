@@ -36,8 +36,8 @@ class CustomButton extends StatelessWidget {
             User user = User(
               id: context.read<SignupCubit>().state.user?.uid,
               location: '',
-              imageUrls: [],
-              interests: [],
+              imageUrls: const [],
+              interests: const [],
               jobTitle: '',
               gender: '',
               age: 0,

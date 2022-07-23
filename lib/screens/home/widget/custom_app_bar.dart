@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,7 +29,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 title,
                 style: GoogleFonts.reenieBeanie(
                   fontSize: 30,
-                  color: Color(0xFF282E4A),
+                  color: const Color(0xFF282E4A),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -62,5 +61,5 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(50.0);
+  Size get preferredSize => const Size.fromHeight(50.0);
 }

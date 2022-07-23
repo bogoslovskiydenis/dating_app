@@ -4,7 +4,7 @@ abstract class LoginState extends Equatable {
   const LoginState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class LoginLoading extends LoginState{
@@ -16,5 +16,5 @@ final User user;
 const LoginLoaded({required this.user});
 
 @override
-List<Object> get props => [user];
+List<Object?> get props => [user];
 }

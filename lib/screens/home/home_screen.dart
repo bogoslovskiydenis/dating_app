@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<SwipeBloc, SwipeState>(
         builder: (context, state) {
           if (state is SwipeLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is SwipeLoaded) {
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
               ),
             );
           } else {
-            return Text('Error');
+            return const Text('Error');
           }
         },
       ),

@@ -8,8 +8,8 @@ class LoginScreen extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (context) =>  LoginScreen(),
+      settings: const RouteSettings(name: routeName),
+      builder: (context) =>  const LoginScreen(),
     );
   }
 

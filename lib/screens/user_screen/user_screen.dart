@@ -13,7 +13,7 @@ class UsersScreen extends StatelessWidget {
 
   static Route route({required User user}) {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
+      settings: const RouteSettings(name: routeName),
       builder: (context) => UsersScreen(user: user),
     );
   }
@@ -93,7 +93,7 @@ class UsersScreen extends StatelessWidget {
                         .headline4!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Text(
@@ -107,7 +107,7 @@ class UsersScreen extends StatelessWidget {
                           height: 2,
                         ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Text(
@@ -115,7 +115,7 @@ class UsersScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   /*make create chips */
-                  CustomChipsContainer(),
+                  const CustomChipsContainer(),
                 ],
               ),
             )

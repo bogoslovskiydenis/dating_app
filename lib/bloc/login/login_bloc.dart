@@ -25,9 +25,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _onStartLogin(StartLogin event, Emitter<LoginState> emit) async {
-    await _databaseRepository.createUser(event.user!);
+    await _databaseRepository.createUser(event.user);
     emit(
-      LoginLoaded(user: event.user!),
+      LoginLoaded(user: event.user),
     );
   }
 
@@ -45,7 +45,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       UpdateUserImages event, Emitter<LoginState> emit) async {
     if (state is LoginLoaded) {
       User user = (state as LoginLoaded).user;
-      await _storageRepo.uploadImage(user, event.image);
+      await _storageRepo.uploadImage(user, event.image!);
 
       _databaseRepository.getUser(user.id!).listen(
         (event) {

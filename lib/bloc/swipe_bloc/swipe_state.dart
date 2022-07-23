@@ -13,7 +13,7 @@ class SwipeLoading extends SwipeState {}
 class SwipeLoaded extends SwipeState {
   final List<User> users;
 
-  SwipeLoaded({required this.users});
+  const SwipeLoaded({required this.users});
   @override
   List<Object?> get props => [users];
 }

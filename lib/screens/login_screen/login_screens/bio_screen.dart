@@ -18,7 +18,7 @@ class BiographyScreen extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
@@ -58,7 +58,7 @@ class BiographyScreen extends StatelessWidget {
                           .headline1!
                           .copyWith(fontWeight: FontWeight.normal),
                     ),
-                    CustomChipsContainer(),
+                    const CustomChipsContainer(),
                   ],
                 ),
                 Column(
@@ -69,7 +69,7 @@ class BiographyScreen extends StatelessWidget {
                       selectedColor: Colors.red,
                       unselectedColor: Colors.blue,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomButton(
@@ -82,7 +82,7 @@ class BiographyScreen extends StatelessWidget {
             ),
           );
         } else {
-          return Text('Something Wrong');
+          return const Text('Something Wrong');
         }
       },
     );

@@ -14,8 +14,8 @@ class SplashScreen extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-        builder: (context) => SplashScreen(),
-        settings: RouteSettings(name: routeName));
+        builder: (context) => const SplashScreen(),
+        settings: const RouteSettings(name: routeName));
   }
 
   @override
@@ -26,32 +26,30 @@ class SplashScreen extends StatelessWidget {
         listener: (context, state) {
           print('Listener');
           if (state.status == AuthStatus.unauthenticated) {
-            Timer(Duration(seconds: 1),
+            Timer(const Duration(seconds: 1),
                     ()=> Navigator.of(context).restorablePushNamedAndRemoveUntil(
                 LoginScreen.routeName, ModalRoute.withName('/login')));
 
           } else if (state.status == AuthStatus.authenticated) {
             Timer(
-              Duration(seconds: 1),
+              const Duration(seconds: 1),
               () => Navigator.of(context).pushNamed(HomeScreen.routeName),
             );
           }
         },
           child: Scaffold(
-            body: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/logo.jpg'),
-                            fit: BoxFit.cover)),
-                    height: 300,
-                  ),
-                ],
-              ),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                          image: AssetImage('assets/logo.jpg'),
+                          fit: BoxFit.cover)),
+                  height: 300,
+                ),
+              ],
             ),
           ),
         ),
