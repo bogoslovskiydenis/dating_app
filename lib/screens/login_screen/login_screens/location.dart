@@ -15,7 +15,7 @@ class Location extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 20, right: 20, left: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 50),
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           if(state is LoginLoading){
@@ -36,20 +36,17 @@ class Location extends StatelessWidget {
                         .headline1!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: CustomTextField(
-                      hint: 'Enter your Location',
-                      onChanged: (value) {
-                        context.read<LoginBloc>().add(
-                          UpdateUserLogin(
-                            user: state.user.copyWith(
-                              location: (value),
-                            ),
+                  CustomTextField(
+                    hint: 'Enter your Location',
+                    onChanged: (value) {
+                      context.read<LoginBloc>().add(
+                        UpdateUserLogin(
+                          user: state.user.copyWith(
+                            location: (value),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

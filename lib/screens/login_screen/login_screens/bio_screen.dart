@@ -14,19 +14,17 @@ class BiographyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        if (state is LoginLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state is LoginLoaded) {
-          return Padding(
-            padding:
-                const EdgeInsets.only(top: 10, bottom: 20, right: 20, left: 20),
-            child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          if (state is LoginLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is LoginLoaded) {
+            return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
@@ -43,12 +41,12 @@ class BiographyScreen extends StatelessWidget {
                       hint: 'Describe Yourself',
                       onChanged: (value) {
                         context.read<LoginBloc>().add(
-                          UpdateUserLogin(
-                            user: state.user.copyWith(
-                              bio: (value),
-                            ),
-                          ),
-                        );
+                              UpdateUserLogin(
+                                user: state.user.copyWith(
+                                  bio: (value),
+                                ),
+                              ),
+                            );
                       },
                     ),
                     Text(
@@ -79,12 +77,12 @@ class BiographyScreen extends StatelessWidget {
                   ],
                 )
               ],
-            ),
-          );
-        } else {
-          return const Text('Something Wrong');
-        }
-      },
+            );
+          } else {
+            return const Text('Something Wrong');
+          }
+        },
+      ),
     );
   }
 }

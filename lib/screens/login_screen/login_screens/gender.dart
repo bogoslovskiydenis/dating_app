@@ -13,97 +13,92 @@ class GenderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-      if (state is LoginLoading) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      if (state is LoginLoaded) {
-        return Padding(
-          padding: const EdgeInsets.only( right: 20, left: 20, ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'What\' your Gender?',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline2!
-                          .copyWith(fontWeight: FontWeight.normal),
-                    ),
-                    CustomCheckbox(
-                      text: 'Male',
-                      value: state.user.gender == 'Male',
-                      onChanged: (bool? newValue) {
-                        context.read<LoginBloc>().add(
-                              UpdateUserLogin(
-                                user: state.user.copyWith(gender: 'Male'),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+      child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+        if (state is LoginLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is LoginLoaded) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'What\' your Gender?',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  CustomCheckbox(
+                    text: 'Male',
+                    value: state.user.gender == 'Male',
+                    onChanged: (bool? newValue) {
+                      context.read<LoginBloc>().add(
+                            UpdateUserLogin(
+                              user: state.user.copyWith(gender: 'Male'),
+                            ),
+                          );
+                    },
+                  ),
+                  CustomCheckbox(
+                    text: 'Female',
+                    value: state.user.gender == 'Female',
+                    onChanged: (bool? newValue) {
+                      context.read<LoginBloc>().add(
+                            UpdateUserLogin(
+                              user: state.user.copyWith(gender: 'Female'),
+                            ),
+                          );
+                    },
+                  ),
+                  Text(
+                    'What\' your Age?',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  CustomTextField(
+                    hint: 'Enter your Age',
+                    onChanged: (value) {
+                      context.read<LoginBloc>().add(
+                            UpdateUserLogin(
+                              user: state.user.copyWith(
+                                age: int.parse(value),
                               ),
-                            );
-                      },
-                    ),
-                    CustomCheckbox(
-                      text: 'Female',
-                      value: state.user.gender == 'Female',
-                      onChanged: (bool? newValue) {
-                        context.read<LoginBloc>().add(
-                              UpdateUserLogin(
-                                user: state.user.copyWith(gender: 'Female'),
-                              ),
-                            );
-                      },
-                    ),
-                    Text(
-                      'What\' your Age?',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline2!
-                          .copyWith(fontWeight: FontWeight.normal),
-                    ),
-                    CustomTextField(
-                      hint: 'Enter your Age',
-                      onChanged: (value) {
-                        context.read<LoginBloc>().add(
-                              UpdateUserLogin(
-                                user: state.user.copyWith(
-                                  age: int.parse(value),
-                                ),
-                              ),
-                            );
-                      },
-                    ),
+                            ),
+                          );
+                    },
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  const StepProgressIndicator(totalSteps: 6, currentStep: 3,
+                    selectedColor: Colors.red,
+                    unselectedColor: Colors.blue,),
+                  const SizedBox(height: 20,),
+                  CustomButton(
+                    tabController: tabController,
+                    text: 'Enter your Gender to Next Step',
+                  ),
+                ],
+              )
 
-                    Padding(
-                      padding: const EdgeInsets.only(top: 300),
-                      child: Column(
-                        children: [
-                          const StepProgressIndicator(totalSteps: 6, currentStep: 4,
-                            selectedColor: Colors.red,
-                            unselectedColor: Colors.blue,),
-                          const SizedBox(height: 20,),
-                          CustomButton(
-                            tabController: tabController,
-                            text: 'Enter your Gender and Age to Next Step',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      } else {
-      return  const Text('Something wrong');
-      }
-    });
+
+            ],
+          );
+        } else {
+          return const Text('Something wrong');
+        }
+      }),
+    );
   }
 }

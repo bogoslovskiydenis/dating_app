@@ -15,7 +15,7 @@ class EmailScreen extends StatelessWidget {
     return BlocBuilder<SignupCubit, SignupState>(
   builder: (context, state) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 20,right: 20,left: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
