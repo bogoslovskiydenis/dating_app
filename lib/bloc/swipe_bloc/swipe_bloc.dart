@@ -15,7 +15,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
   }
 
   void _onLoadUsers(LoadUsers event, Emitter<SwipeState> emit) {
-    emit(SwipeLoaded(users: event.users));
+    emit(SwipeLoaded(users: event.users!));
   }
 
   void _onSwipeLeftEvent(SwipeLeftEvent event, Emitter<SwipeState> emit) {

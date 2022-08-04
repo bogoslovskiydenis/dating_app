@@ -46,15 +46,15 @@ class CustomImageContainer extends StatelessWidget {
                   .secondary,)
               , onPressed: () async {
               ImagePicker _picker = ImagePicker();
-              final XFile? image = await _picker.pickImage(
+              final XFile? _image = await _picker.pickImage(
                   source: ImageSource.gallery);
-              if (image == null) {
+              if (_image == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('No image selected'),));
               }
-              if (image != null) {
+              if (_image != null) {
                 log('load pict');
-                context.read<LoginBloc>().add(UpdateUserImages(image: image));
+                context.read<LoginBloc>().add(UpdateUserImages(image: _image));
               }
             },
             ),

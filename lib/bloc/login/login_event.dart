@@ -38,7 +38,7 @@ class UpdateUserLogin extends LoginEvent {
 
 class UpdateUserImages extends LoginEvent {
   final User? user;
-  final XFile? image;
+  final XFile image;
 
   const UpdateUserImages({required this.image, this.user});
 

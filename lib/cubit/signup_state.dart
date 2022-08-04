@@ -14,7 +14,7 @@ class SignupState extends Equatable {
     required this.email,
     required this.password,
     required this.status,
-    this.user,
+     this.user,
   });
 
   factory SignupState.initial() {

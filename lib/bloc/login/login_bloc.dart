@@ -45,13 +45,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       UpdateUserImages event, Emitter<LoginState> emit) async {
     if (state is LoginLoaded) {
       User user = (state as LoginLoaded).user;
-      await _storageRepo.uploadImage(user, event.image!);
-
-      _databaseRepository.getUser(user.id!).listen(
-        (event) {
-          add(UpdateUserLogin(user: user));
-        },
-      );
+      await _storageRepo.uploadImage(user, event.image);
+      if (user.id != null) {
+        _databaseRepository.getUser(user.id.toString()).listen(
+          (event) {
+            add(UpdateUserLogin(user: user));
+          },
+        );
+      }
     }
   }
 }

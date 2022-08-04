@@ -7,10 +7,10 @@ class DatabaseRepository extends BaseDatabaseRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   @override
-  Stream<User> getUser(String id) {
+  Stream<User> getUser(String userId) {
     return _firebaseFirestore
         .collection('users')
-        .doc(id)
+        .doc(userId)
         .snapshots()
         .map((snapshot) => User.fromDocument(snapshot));
   }
@@ -25,11 +25,8 @@ class DatabaseRepository extends BaseDatabaseRepository {
 
   @override
   Future<void> createUser(User user) async {
-     await _firebaseFirestore
-        .collection('users')
-     .doc(user.id)
-        .set(user.toMap());
-    }
+    await _firebaseFirestore.collection('users').doc(user.id).set(user.toMap());
+  }
 
   @override
   Future<void> updateUser(User user) {

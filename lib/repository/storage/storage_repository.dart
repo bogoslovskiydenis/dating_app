@@ -14,7 +14,7 @@ class StorageRepo extends BaseStorageRepo {
   Future<void> uploadImage(User user, XFile image) async {
     try {
       await storage
-          .ref('${user.id}/${image.name}')
+          .ref('user_1/${image.name}')
           .putFile(File(image.path))
           .then((p0) =>
               DatabaseRepository().updateUserPictires(user, image.name));
@@ -24,7 +24,7 @@ class StorageRepo extends BaseStorageRepo {
   @override
   Future<String> getDownloadUrl(User user, String imageName) async {
     String downloadUrl =
-        await storage.ref('${user.id}/$imageName').getDownloadURL();
+        await storage.ref('user_1/$imageName').getDownloadURL();
 
     return downloadUrl;
   }

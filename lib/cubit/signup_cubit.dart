@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dating_app/model/user_model.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -23,7 +24,9 @@ class SignupCubit extends Cubit<SignupState> {
 
  Future<void> signupCredential() async {
 
-    if(!state.isFormValid)return;
+    if(!state.isFormValid || state.status == SignupStatus.submitting) {
+      emit(state.copyWith(status: SignupStatus.submitting));
+    }
     try {
       await _authRepo.sighUp(email: state.email, password: state.password);
       emit(state.copyWith(status: SignupStatus.success , user: user));

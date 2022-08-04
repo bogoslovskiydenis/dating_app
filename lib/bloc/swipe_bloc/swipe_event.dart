@@ -9,9 +9,9 @@ abstract class SwipeEvent extends Equatable {
 }
 
 class LoadUsers extends SwipeEvent {
-  final List<User> users;
+  final List<User>? users;
 
-  const LoadUsers({required this.users});
+  const LoadUsers({ this.users});
 
   @override
   List<Object?> get props => [users];
