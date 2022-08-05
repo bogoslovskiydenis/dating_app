@@ -45,9 +45,9 @@ class PictureScreen extends StatelessWidget {
                             childAspectRatio: 0.66),
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
-                      return (imageCount > index)
+                      return (state.user.imageUrls.length > index)
                           ? CustomImageContainer(
-                              imageUrls: images[index],
+                              imageUrls: state.user.imageUrls[index],
                             )
                           : const CustomImageContainer();
                     },
