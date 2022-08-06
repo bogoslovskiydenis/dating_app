@@ -19,10 +19,13 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
+              child: SizedBox(
                 child: Image.asset(
-              'assets/emblem.jpg',
-              height: 60,
-            )),
+                  'assets/emblem.jpg',
+                  height: 60,
+                ),
+              ),
+            ),
             Expanded(
               flex: 2,
               child: Text(

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../model/user_model.dart';
 import '../user_screen/widgets/user_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget with PreferredSizeWidget{
   const HomeScreen({Key? key}) : super(key: key);
   static const String routeName = '/';
 
@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'DATING',
-
       ),
       body: BlocBuilder<SwipeBloc, SwipeState>(
         builder: (context, state) {
@@ -110,4 +109,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
 }

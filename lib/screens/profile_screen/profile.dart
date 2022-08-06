@@ -1,6 +1,7 @@
 import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:dating_app/bloc/profile/profile_bloc.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
+import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/profile_screen/widgets/title_with_icon.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../model/models.dart';
 import '../home/widget/home.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
   const ProfileScreen({Key? key}) : super(key: key);
   static const String routeName = '/profile';
 
@@ -29,8 +30,19 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final User user = User.users[0];
     return Scaffold(
-      appBar: const CustomAppBar(title: "Profile"),
-      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight( 56),
+        child: GestureDetector(
+          child: const CustomAppBar(
+            title: "Profile",
+          ),
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const HomeScreen();
+            }));
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
@@ -38,8 +50,7 @@ class ProfileScreen extends StatelessWidget {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            }
-            else if  (state is ProfileLoaded) {
+            } else if (state is ProfileLoaded) {
               return Column(
                 children: [
                   const SizedBox(
@@ -124,8 +135,8 @@ class ProfileScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
                                     image: DecorationImage(
-                                      image:
-                                          NetworkImage(state.user.imageUrls[index]),
+                                      image: NetworkImage(
+                                          state.user.imageUrls[index]),
                                     ),
                                   ),
                                 );
@@ -174,4 +185,7 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(50);
 }

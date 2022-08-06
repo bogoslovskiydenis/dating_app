@@ -2,6 +2,7 @@ import 'package:dating_app/model/user_match.dart';
 import 'package:dating_app/screens/user_screen/widgets/user_small_image.dart';
 import 'package:flutter/material.dart';
 
+import '../home/home_screen.dart';
 import '../home/widget/home.dart';
 
 class MatchesScreen extends StatelessWidget {
@@ -26,7 +27,19 @@ class MatchesScreen extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Match Screen',),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight( 56),
+        child: GestureDetector(
+          child: const CustomAppBar(
+            title: "Match",
+          ),
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const HomeScreen();
+            }));
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
