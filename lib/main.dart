@@ -1,7 +1,9 @@
 import 'package:dating_app/bloc/profile/profile_bloc.dart';
-import 'package:dating_app/cubit/signup_cubit.dart';
+import 'package:dating_app/cubit/signup/signup_cubit.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
+import 'package:dating_app/screens/login_screen/logn_screen.dart';
+import 'package:dating_app/screens/login_screen/registration_screen.dart';
 import 'package:dating_app/screens/splash_scren/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +16,8 @@ import 'theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(apiKey: 'AIzaSyDNgiCAqTr6dF5Sb2UWCzXhMuK4NChQPXM', storageBucket: "dating-app-da7ee.appspot.com",
-        appId: "1:449766472937:web:01bb4aaf42c01b61384478", messagingSenderId: "449766472937", projectId: "dating-app-da7ee")
+   // options: FirebaseOptions(apiKey: 'AIzaSyDNgiCAqTr6dF5Sb2UWCzXhMuK4NChQPXM', storageBucket: "dating-app-da7ee.appspot.com",
+      //  appId: "1:449766472937:web:01bb4aaf42c01b61384478", messagingSenderId: "449766472937", projectId: "dating-app-da7ee")
   );
   runApp(const MyApp());
 }
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme(),
           onGenerateRoute: AppRouter.onGenerateRote,
-          initialRoute: SplashScreen.routeName,
+          initialRoute: RegistrationScreen.routeName,
         ),
       ),
     );

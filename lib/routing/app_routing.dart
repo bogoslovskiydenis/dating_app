@@ -1,6 +1,7 @@
 import 'package:dating_app/screens/chat_screen/chat.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
+import 'package:dating_app/screens/login_screen/registration_screen.dart';
 import 'package:dating_app/screens/match_screen/match_screen.dart';
 import 'package:dating_app/screens/profile_screen/profile.dart';
 import 'package:dating_app/screens/splash_scren/splash_screen.dart';
@@ -26,6 +27,8 @@ class AppRouter {
         return ProfileScreen.route();
       case LoginScreen.routeName:
         return LoginScreen.route();
+      case RegistrationScreen.routeName:
+        return RegistrationScreen.route();
       case SplashScreen.routeName:
         return SplashScreen.route();
       default:

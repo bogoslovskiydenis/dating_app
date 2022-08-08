@@ -1,4 +1,4 @@
-import 'package:dating_app/cubit/signup_cubit.dart';
+import 'package:dating_app/cubit/signup/signup_cubit.dart';
 import 'package:dating_app/screens/login_screen/login_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -10,8 +10,8 @@ class AuthRepo extends BaseAuthRepo {
 
   @override
   Future<auth.User?> sighUp({
-        required String email,
-        required String password
+    required String email,
+    required String password
   }) async {
     try {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -28,4 +28,14 @@ class AuthRepo extends BaseAuthRepo {
 
   @override
   Stream<auth.User?> get user => _firebaseAuth.userChanges();
+
+  @override
+  Future<void> logInWithEmailAndPassword({
+  required String email,
+    required String password,
+}) async {
+    try{
+      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    } catch(_){}
+  }
 }

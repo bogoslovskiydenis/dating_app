@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dating_app/model/user_model.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
