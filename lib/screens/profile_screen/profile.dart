@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                           ],
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(user.imageUrls[0]),
+                            image: NetworkImage(state.user.imageUrls[0]),
                           ),
                         ),
                       ),
@@ -93,7 +93,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Text(
-                            user.name,
+                            state.user.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline2!
@@ -112,7 +112,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                           title: 'Biography',
                           icon: Icons.edit,
                         ),
-                        Text(user.bio,
+                        Text(state.user.bio,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                           height: 80,
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: user.imageUrls.length,
+                              itemCount: state.user.imageUrls.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return Container(
@@ -136,7 +136,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                                     borderRadius: BorderRadius.circular(10.0),
                                     image: DecorationImage(
                                       image: NetworkImage(
-                                          user.imageUrls[index]),
+                                          state.user.imageUrls[index]),
                                     ),
                                   ),
                                 );
@@ -146,7 +146,7 @@ class ProfileScreen extends StatelessWidget with PreferredSizeWidget{
                           title: 'Location!!',
                           icon: Icons.edit,
                         ),
-                        Text(user.location,
+                        Text(state.user.location,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
