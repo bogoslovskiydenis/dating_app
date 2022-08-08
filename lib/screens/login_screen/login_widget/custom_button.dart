@@ -34,17 +34,17 @@ class CustomButton extends StatelessWidget {
             await context.read<SignupCubit>().signupCredential();
 
             User user = User(
-              id: context.read<SignupCubit>().state.user?.uid,
+              id: context.read<SignupCubit>().state.user!.uid,
               location: '',
-              imageUrls: const [],
-              interests: const [],
+              imageUrls:  [],
+              interests:  [],
               jobTitle: '',
               gender: '',
               age: 0,
               bio: '',
               name: '',
             );
-            context.read<LoginBloc>().add(StartLogin(user: user,),);
+            context.read<LoginBloc>().add(StartLogin(user: user),);
           }
         },
         child: SizedBox(

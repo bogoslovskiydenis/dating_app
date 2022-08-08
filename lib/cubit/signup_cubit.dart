@@ -24,7 +24,7 @@ class SignupCubit extends Cubit<SignupState> {
 
  Future<void> signupCredential() async {
 
-    if(!state.isFormValid || state.status == SignupStatus.submitting) {
+    if(!state.isFormValid ) {
       emit(state.copyWith(status: SignupStatus.submitting));
     }
     try {
