@@ -26,10 +26,12 @@ class SplashScreen extends StatelessWidget {
         listener: (context, state) {
           print('Listener');
           if (state.status == AuthStatus.unauthenticated) {
-            Timer(const Duration(seconds: 1),
-                    ()=> Navigator.of(context).restorablePushNamedAndRemoveUntil(
-                LoginScreen.routeName, ModalRoute.withName('/login')));
-
+            Timer(
+              const Duration(seconds: 1),
+              () => Navigator.of(context).pushNamed(
+                LoginScreen.routeName,
+              ),
+            );
           } else if (state.status == AuthStatus.authenticated) {
             Timer(
               const Duration(seconds: 1),
@@ -37,22 +39,22 @@ class SplashScreen extends StatelessWidget {
             );
           }
         },
-          child: Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: const DecorationImage(
-                          image: AssetImage('assets/logo.jpg'),
-                          fit: BoxFit.cover)),
-                  height: 300,
-                ),
-              ],
-            ),
+        child: Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    image: const DecorationImage(
+                        image: AssetImage('assets/logo.jpg'),
+                        fit: BoxFit.cover)),
+                height: 300,
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }

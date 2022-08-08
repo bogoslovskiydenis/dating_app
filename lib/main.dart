@@ -1,4 +1,5 @@
 import 'package:dating_app/bloc/profile/profile_bloc.dart';
+import 'package:dating_app/cubit/registration/registration_cubit.dart';
 import 'package:dating_app/cubit/signup/signup_cubit.dart';
 import 'package:dating_app/model/models.dart';
 import 'package:dating_app/routing/app_routing.dart';
@@ -51,6 +52,11 @@ class MyApp extends StatelessWidget {
               authRepo: context.read<AuthRepo>(),
             ),
           ),
+          BlocProvider<RegistrationCubit>(
+            create: (context) => RegistrationCubit(
+              authRepo: context.read<AuthRepo>(),
+            ),
+          ),
           BlocProvider<LoginBloc>(
             create: (context) => LoginBloc(
               databaseRepository: context.read<DatabaseRepository>(),
@@ -70,7 +76,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme(),
           onGenerateRoute: AppRouter.onGenerateRote,
-          initialRoute: RegistrationScreen.routeName,
+          initialRoute: SplashScreen.routeName,
         ),
       ),
     );

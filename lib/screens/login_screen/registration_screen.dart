@@ -1,6 +1,11 @@
+import 'package:dating_app/bloc/blocks.dart';
+import 'package:dating_app/cubit/registration/registration_cubit.dart';
+import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/home/widget/home.dart';
+import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/login_screen/registration_widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -9,9 +14,13 @@ class RegistrationScreen extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (context) => const RegistrationScreen(),
-    );
+        settings: const RouteSettings(name: routeName),
+        builder: (context) {
+          return BlocProvider.of<AuthBloc>(context).state.status ==
+                  AuthStatus.authenticated
+              ? const HomeScreen()
+              : const RegistrationScreen();
+        });
   }
 
   @override
@@ -39,7 +48,9 @@ class RegistrationScreen extends StatelessWidget {
               beginColor: Theme.of(context).accentColor,
               endColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                context.read<RegistrationCubit>().logInWithCredentials();
+              },
             ),
             SizedBox(
               height: 10,
@@ -49,7 +60,11 @@ class RegistrationScreen extends StatelessWidget {
               beginColor: Theme.of(context).accentColor,
               endColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.of(context).restorablePushNamedAndRemoveUntil(
+                LoginScreen.routeName,
+                ModalRoute.withName('/login'),
+              ),
             ),
           ],
         ),
@@ -63,9 +78,16 @@ class EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (email) {},
-      decoration: const InputDecoration(labelText: 'Email'),
+    return BlocBuilder<RegistrationCubit, RegistrationState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (email) {
+            context.read<RegistrationCubit>().emailChanged(email);
+          },
+          decoration: const InputDecoration(labelText: 'Email'),
+        );
+      },
     );
   }
 }
@@ -75,10 +97,17 @@ class PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (email) {},
-      decoration: const InputDecoration(labelText: 'Password'),
-      obscureText: true,
+    return BlocBuilder<RegistrationCubit, RegistrationState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (password) {
+            context.read<RegistrationCubit>().passwordChanged(password);
+          },
+          decoration: const InputDecoration(labelText: 'Password'),
+          obscureText: true,
+        );
+      },
     );
   }
 }
