@@ -13,7 +13,10 @@ import 'theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(apiKey: 'AIzaSyDNgiCAqTr6dF5Sb2UWCzXhMuK4NChQPXM', storageBucket: "dating-app-da7ee.appspot.com",
+        appId: "1:449766472937:web:01bb4aaf42c01b61384478", messagingSenderId: "449766472937", projectId: "dating-app-da7ee")
+  );
   runApp(const MyApp());
 }
 
