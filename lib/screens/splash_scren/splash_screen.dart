@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
+import 'package:dating_app/screens/login_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +30,7 @@ class SplashScreen extends StatelessWidget {
             Timer(
               const Duration(seconds: 1),
               () => Navigator.of(context).pushNamed(
-                LoginScreen.routeName,
+                RegistrationScreen.routeName,
               ),
             );
           } else if (state.status == AuthStatus.authenticated) {
