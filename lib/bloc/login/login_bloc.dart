@@ -25,10 +25,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _onStartLogin(StartLogin event, Emitter<LoginState> emit) async {
-    await _databaseRepository.createUser(event.user);
-    emit(
-      LoginLoaded(user: event.user),
-    );
+    emit(LoginLoading());
+    try {
+      await _databaseRepository.createUser(event.user);
+      emit(LoginLoaded(user: event.user));
+    } catch (e) {
+      emit(LoginError(message: e.toString()));
+    }
   }
 
   void _onUpdateUserLogin(

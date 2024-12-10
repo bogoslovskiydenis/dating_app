@@ -19,11 +19,16 @@ class AuthRepo extends BaseAuthRepo {
       final user = credential.user;
       return user;
     } catch (_) {}
+    return null;
   }
 
   @override
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      throw Exception('Failed to sign out');
+    }
   }
 
   @override

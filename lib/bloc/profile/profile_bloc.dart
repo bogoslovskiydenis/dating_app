@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dating_app/bloc/blocks.dart';
+import 'package:dating_app/bloc/profile/profile_state.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../model/user_model.dart';
@@ -8,7 +9,6 @@ import '../../repository/database/db_repository.dart';
 
 part 'profile_event.dart';
 
-part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final AuthBloc _authBLoc;
@@ -30,21 +30,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     });
   }
 
-  void _onLoadProile(LoadProfile event, Emitter<ProfileState> emitter) {
-    print(event.userId);
-    _databaseRepository.getUser(event.userId).listen((user) {
-      add(UpdateProfile(user: user));
-    });
+  void _onLoadProile(LoadProfile event, Emitter<ProfileState> emit) {
+    print('Loading profile for user: ${event.userId}');
+    if (event.userId.isEmpty) {
+      emit(ProfileLoading());
+      return;
+    }
+
+    _databaseRepository.getUser(event.userId).listen(
+            (user) {
+          print('Profile loaded: ${user.name}');
+          add(UpdateProfile(user: user));
+        },
+        onError: (error) {
+          print('Error loading profile: $error');
+          emit(ProfileError(message: error.toString()));
+        }
+    );
   }
 
-  void _onUpdateProfile(UpdateProfile event, Emitter<ProfileState> emitter) {
-    print(event.user);
-    emitter(ProfileLoaded(user: event.user));
-  }
-
-  @override
-  Future<void>close()async{
-    _subscription?.cancel();
-    super.close();
+  void _onUpdateProfile(UpdateProfile event, Emitter<ProfileState> emit) {
+    print('Updating profile for user: ${event.user.id}');
+    try {
+      emit(ProfileLoaded(user: event.user));
+    } catch (e) {
+      print('Error updating profile state: $e');
+      emit(ProfileError(message: e.toString()));
+    }
   }
 }

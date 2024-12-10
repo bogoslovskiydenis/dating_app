@@ -45,7 +45,7 @@ class RegistrationScreen extends StatelessWidget {
             ),
             CustomElevatedButton(
               text: 'Login',
-              beginColor: Theme.of(context).accentColor,
+              beginColor: Theme.of(context).colorScheme.secondary,
               endColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
               onPressed: () {
@@ -57,14 +57,14 @@ class RegistrationScreen extends StatelessWidget {
             ),
             CustomElevatedButton(
               text: 'SignUp',
-              beginColor: Theme.of(context).accentColor,
+              beginColor: Theme.of(context).colorScheme.secondary,
               endColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
               onPressed: () =>
                   Navigator.of(context).restorablePushNamedAndRemoveUntil(
-                LoginScreen.routeName,
-                ModalRoute.withName('/login'),
-              ),
+                    LoginScreen.routeName,
+                    ModalRoute.withName('/login'),
+                  ),
             ),
           ],
         ),

@@ -13,61 +13,70 @@ class EmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
-  builder: (context, state) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 50),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'What\' Your Email Address?',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline2!
-                    .copyWith(fontWeight: FontWeight.normal),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'What\' Your Email Address?',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                      hint: 'Write yor email here',
+                      onChanged: (value) {
+                        context.read<SignupCubit>().emailChanged(value);
+                        print(state.email);
+                      }),
+                  Text(
+                    'What\' Your Password',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                      hint: 'Write yor password here',
+                      onChanged: (value) {
+                        context.read<SignupCubit>().passwordChanged(value);
+                        print(state.password);
+                      }),
+                ],
               ),
-              const SizedBox(height: 10,),
-               CustomTextField( hint: 'Write yor email here',
-                   onChanged: (value){
-                     context.read<SignupCubit>().emailChanged(value);
-                     print(state.email);
-                   }
-               ),
-              Text(
-                'What\' Your Password',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline2!
-                    .copyWith(fontWeight: FontWeight.normal),
+              Column(
+                children: [
+                  const StepProgressIndicator(
+                    totalSteps: 6,
+                    currentStep: 1,
+                    selectedColor: Colors.red,
+                    unselectedColor: Colors.blue,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    tabController: tabController,
+                    text: 'Enter your Mail to Next Step',
+                  ),
+                ],
               ),
-                const SizedBox(height: 10,),
-                CustomTextField( hint: 'Write yor password here',
-                    onChanged: (value){
-                  context.read<SignupCubit>().passwordChanged(value);
-                  print(state.password);
-                }),
             ],
           ),
-          Column(
-            children: [
-              const StepProgressIndicator(totalSteps: 6, currentStep: 1,
-                selectedColor: Colors.red,
-                unselectedColor: Colors.blue,),
-              const SizedBox(height: 20,),
-              CustomButton(
-                tabController: tabController,
-                text: 'Enter your Mail to Next Step',
-
-              ),
-            ],
-          ),
-        ],
-      ),
+        );
+      },
     );
-  },
-);
   }
 }

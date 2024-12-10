@@ -7,5 +7,5 @@ abstract class BaseDatabaseRepository {
 
   Future<void> updateUser(User user);
 
-  Future<void> updateUserPictires(User user, String imageName);
+  Future<void> updateUserPictures(User user, String imageName);
 }

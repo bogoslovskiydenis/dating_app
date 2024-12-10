@@ -23,28 +23,46 @@ class CustomButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         style:
-            ElevatedButton.styleFrom(elevation: 0, primary: Colors.transparent),
+            ElevatedButton.styleFrom(elevation: 0, backgroundColor: Colors.transparent),
         onPressed: () async {
-          if (tabController.index == 5){
+          if (tabController.index == 5) {
             Navigator.pushNamed(context, '/');
-          } else {
-            tabController.animateTo(tabController.index +1);
+            return;
           }
-          if (tabController.index == 2) {
-            await context.read<SignupCubit>().signupCredential();
 
-            User user = User(
-              id: context.read<SignupCubit>().state.user!.uid,
-              location: '',
-              imageUrls:  [],
-              interests:  [],
-              jobTitle: '',
-              gender: '',
-              age: 0,
-              bio: '',
-              name: '',
-            );
-            context.read<LoginBloc>().add(StartLogin(user: user),);
+          if (tabController.index == 1) { // Email секция
+            try {
+              await context.read<SignupCubit>().signupCredential();
+              final signupState = context.read<SignupCubit>().state;
+
+              if (signupState.status == SignupStatus.success && signupState.user != null) {
+                final user = User(
+                  id: signupState.user!.uid,
+                  location: '',
+                  imageUrls: [],
+                  interests: [],
+                  jobTitle: '',
+                  gender: '',
+                  age: 0,
+                  bio: '',
+                  name: '',
+                );
+
+                context.read<LoginBloc>().add(StartLogin(user: user));
+                await Future.delayed(const Duration(milliseconds: 500));
+                tabController.animateTo(tabController.index + 1);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Please complete registration')),
+                );
+              }
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error: ${e.toString()}')),
+              );
+            }
+          } else {
+            tabController.animateTo(tabController.index + 1);
           }
         },
         child: SizedBox(

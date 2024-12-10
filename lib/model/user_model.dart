@@ -29,16 +29,17 @@ class User extends Equatable {
       [id, name, age, imageUrls, bio, gender, location, interests, jobTitle];
 
   static User fromDocument(DocumentSnapshot snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     User user = User(
-      gender: snapshot['gender'],
-      location: snapshot['location'],
       id: snapshot.id,
-      name: snapshot['name'],
-      age: snapshot['age'],
-      imageUrls: snapshot['imageUrls'],
-      bio: snapshot['bio'],
-      interests: snapshot['interests'],
-      jobTitle: snapshot['jobTitle'],
+      name: data['name'] ?? '',
+      age: data['age'] ?? 0,
+      gender: data['gender'] ?? '',
+      location: data['location'] ?? '',
+      imageUrls: List<String>.from(data['imageUrls'] ?? []),
+      bio: data['bio'] ?? '',
+      interests: List<String>.from(data['interests'] ?? []),
+      jobTitle: data['jobTitle'] ?? '',
     );
     return user;
   }

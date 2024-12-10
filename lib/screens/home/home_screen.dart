@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../model/user_model.dart';
 import '../user_screen/widgets/user_card.dart';
 
-class HomeScreen extends StatelessWidget with PreferredSizeWidget{
+class HomeScreen extends StatelessWidget implements PreferredSizeWidget{
   const HomeScreen({Key? key}) : super(key: key);
   static const String routeName = '/';
 
@@ -30,6 +30,15 @@ class HomeScreen extends StatelessWidget with PreferredSizeWidget{
               child: CircularProgressIndicator(),
             );
           } else if (state is SwipeLoaded) {
+            // Добавляем проверку на пустой список
+            if (state.users.isEmpty) {
+              return Center(
+                child: Text(
+                  'No more users to show!',
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              );
+            }
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -39,33 +48,29 @@ class HomeScreen extends StatelessWidget with PreferredSizeWidget{
                           arguments: state.users[0]);
                     },
                     child: Draggable<User>(
-                      child: UserCard(
-                        user: state.users[0],
-                      ),
-                      feedback: UserCard(
-                        user: state.users[0],
-                      ),
-                      childWhenDragging: UserCard(
-                        user: state.users[1],
-                      ),
+                      child: UserCard(user: state.users[0]),
+                      feedback: UserCard(user: state.users[0]),
+                      childWhenDragging: state.users.length > 1
+                          ? UserCard(user: state.users[1])
+                          : Container(), // Если пользователь последний
                       onDragEnd: (drag) {
                         if (drag.velocity.pixelsPerSecond.dx < 0) {
                           context
                               .read<SwipeBloc>()
                               .add(SwipeLeftEvent(user: state.users[0]));
-                          print('left');
                         } else {
                           context
                               .read<SwipeBloc>()
                               .add(SwipeRightEvent(user: state.users[0]));
-                          print('right');
                         }
                       },
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 50,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -74,7 +79,6 @@ class HomeScreen extends StatelessWidget with PreferredSizeWidget{
                             context
                                 .read<SwipeBloc>()
                                 .add(SwipeLeftEvent(user: state.users[0]));
-                            print('left');
                           },
                           child: ChoiceButton(
                             color: Theme.of(context).colorScheme.secondary,
@@ -82,16 +86,16 @@ class HomeScreen extends StatelessWidget with PreferredSizeWidget{
                           ),
                         ),
                         InkWell(
-                            onTap: () {
-                              context
-                                  .read<SwipeBloc>()
-                                  .add(SwipeLeftEvent(user: state.users[0]));
-                              print('right');
-                            },
-                            child: ChoiceButton(
-                              color: Theme.of(context).colorScheme.secondary,
-                              icon: Icons.favorite,
-                            )),
+                          onTap: () {
+                            context
+                                .read<SwipeBloc>()
+                                .add(SwipeRightEvent(user: state.users[0]));
+                          },
+                          child: ChoiceButton(
+                            color: Theme.of(context).colorScheme.secondary,
+                            icon: Icons.favorite,
+                          ),
+                        ),
                         ChoiceButton(
                           color: Theme.of(context).colorScheme.secondary,
                           icon: Icons.watch_later_outlined,
@@ -103,10 +107,10 @@ class HomeScreen extends StatelessWidget with PreferredSizeWidget{
               ),
             );
           } else {
-            return const Text('Error');
+            return const Text('Something went wrong!');
           }
         },
-      ),
+      )
     );
   }
 

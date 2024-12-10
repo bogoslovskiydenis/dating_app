@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -20,10 +19,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _userSubscription = _authRepo.user.listen((user) {
       add(AuthUserChanged(user: user));
     });
-    on<AuthUserChanged>((AuthUserChanged event, Emitter<AuthState> emit) {
+
+    on<AuthUserChanged>((event, emit) {
       event.user != null
           ? emit(AuthState.authenticated(user: event.user!))
           : emit(const AuthState.unauthenticated());
+    });
+
+    on<AuthLogoutRequested>((event, emit) async {
+      try {
+        await _authRepo.signOut();
+        emit(const AuthState.unauthenticated());
+      } catch (_) {
+        emit(const AuthState.unauthenticated());
+      }
     });
   }
 

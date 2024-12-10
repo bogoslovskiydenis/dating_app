@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TitleWithIcon extends StatelessWidget {
-  const TitleWithIcon({Key? key, required this.title, required this.icon})
-      : super(key: key);
+  const TitleWithIcon({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
+
   final String title;
   final IconData icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class TitleWithIcon extends StatelessWidget {
           style: Theme.of(context).textTheme.headline4,
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: onPressed,  // Используем callback
           icon: Icon(icon),
         )
       ],

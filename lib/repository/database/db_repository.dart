@@ -8,11 +8,18 @@ class DatabaseRepository extends BaseDatabaseRepository {
 
   @override
   Stream<User> getUser(String userId) {
+    print('Getting user data for ID: $userId');
     return _firebaseFirestore
         .collection('users')
         .doc(userId)
         .snapshots()
-        .map((snapshot) => User.fromDocument(snapshot));
+        .map((snapshot) {
+      if (!snapshot.exists) {
+        throw Exception('User not found');
+      }
+      print('Retrieved user data: ${snapshot.data()}');
+      return User.fromDocument(snapshot);
+    });
   }
 
   @override
@@ -25,7 +32,16 @@ class DatabaseRepository extends BaseDatabaseRepository {
 
   @override
   Future<void> createUser(User user) async {
-    await _firebaseFirestore.collection('users').doc(user.id).set(user.toMap());
+    await _firebaseFirestore
+        .collection('users')
+        .doc(user.id)
+        .set(user.toMap())
+        .then((value) {
+      print('User document created');
+    }).catchError((error) {
+      print('Error creating user: $error');
+      throw error;
+    });
   }
 
   @override
@@ -33,9 +49,23 @@ class DatabaseRepository extends BaseDatabaseRepository {
     return _firebaseFirestore
         .collection('users')
         .doc(user.id)
-        .update(user.toMap())
-        .then((value) {
-      print('User document update!');
+        .update({
+      'bio': user.bio,
+      'location': user.location,
+      'interests': user.interests,
+      'imageUrls': user.imageUrls,
+    })
+        .then((value) => print('User data updated'));
+  }
+
+  @override
+  Future<void> updateUserPictures(User user, String newImageUrl) async {
+    List<String> updatedUrls = [...user.imageUrls, newImageUrl];
+    return _firebaseFirestore
+        .collection('users')
+        .doc(user.id)
+        .update({
+      'imageUrls': updatedUrls,
     });
   }
 }
