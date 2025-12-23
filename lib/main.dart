@@ -30,17 +30,24 @@ void main() async {
     }
   }
 
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyALsi8csiwlaCUjDPHBmCScnZ3mzYN9q_c",
-          authDomain: "dating-app-da7ee.firebaseapp.com",
-          databaseURL: "https://dating-app-da7ee-default-rtdb.firebaseio.com",
-          projectId: "dating-app-da7ee",
-          storageBucket: "dating-app-da7ee.appspot.com",
-          messagingSenderId: "449766472937",
-          appId: "1:449766472937:web:ca1a6d1df997988f384478"
-      )
-  );
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyALsi8csiwlaCUjDPHBmCScnZ3mzYN9q_c",
+              authDomain: "dating-app-da7ee.firebaseapp.com",
+              databaseURL: "https://dating-app-da7ee-default-rtdb.firebaseio.com",
+              projectId: "dating-app-da7ee",
+              storageBucket: "dating-app-da7ee.appspot.com",
+              messagingSenderId: "449766472937",
+              appId: "1:449766472937:web:ca1a6d1df997988f384478"
+          )
+      );
+    }
+  } catch (e) {
+    // Firebase уже инициализирован (например, через google-services.json на Android)
+    print('Firebase initialization: $e');
+  }
 
   runApp(const MyApp());
 }

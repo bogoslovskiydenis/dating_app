@@ -84,13 +84,13 @@ class UsersScreen extends StatelessWidget {
                 children: [
                   Text(
                     '${user.name} , ${user.age}',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(
                     '${user.jobTitle} ',
                     style: Theme.of(context)
                         .textTheme
-                        .headline4!
+                        .titleMedium!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   const SizedBox(
@@ -98,11 +98,11 @@ class UsersScreen extends StatelessWidget {
                   ),
                   Text(
                     'About',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(
                     '${user.bio} ',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontWeight: FontWeight.normal,
                           height: 2,
                         ),
@@ -112,7 +112,7 @@ class UsersScreen extends StatelessWidget {
                   ),
                   Text(
                     'Interests',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   /*make create chips */
                   const CustomChipsContainer(),

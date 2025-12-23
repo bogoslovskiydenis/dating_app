@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget implements PreferredSizeWidget{
               return Center(
                 child: Text(
                   'No more users to show!',
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               );
             }

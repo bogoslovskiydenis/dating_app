@@ -32,7 +32,7 @@ class PictureScreen extends StatelessWidget {
                   'Add 2 or more Pictures',
                   style: Theme.of(context)
                       .textTheme
-                      .headline1!
+                      .headlineLarge!
                       .copyWith(fontWeight: FontWeight.normal),
                 ),
                 //TODO : not download photo to firebase ....

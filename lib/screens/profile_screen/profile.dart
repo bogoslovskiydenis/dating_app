@@ -205,7 +205,7 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                             state.user.name,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline2!
+                                .headlineMedium!
                                 .copyWith(color: Colors.white),
                           ),
                         ),
@@ -225,7 +225,7 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                         Text(state.user.bio,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText1!
+                                .bodyLarge!
                                 .copyWith(height: 1.5)),
                         TitleWithIcon(
                           title: 'Pictures',
@@ -264,7 +264,7 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                         Text(state.user.location,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText1!
+                                .bodyLarge!
                                 .copyWith(height: 1.5)),
                         TitleWithIcon(
                           title: 'Interests',
@@ -292,7 +292,7 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                               'Sign Out',
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5!
+                                  .titleSmall!
                                   .copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),

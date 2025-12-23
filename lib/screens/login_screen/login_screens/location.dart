@@ -33,7 +33,7 @@ class Location extends StatelessWidget {
                     style: Theme
                         .of(context)
                         .textTheme
-                        .headline1!
+                        .headlineLarge!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   CustomTextField(

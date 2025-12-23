@@ -22,7 +22,7 @@ class Start extends StatelessWidget {
           ),
           Text(
             'Welcome to Dating App',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           const Text('App Description'),
           CustomButton(tabController: tabController),

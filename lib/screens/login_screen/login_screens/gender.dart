@@ -33,7 +33,7 @@ class GenderScreen extends StatelessWidget {
                     'What\' your Gender?',
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headlineMedium!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   CustomCheckbox(
@@ -62,7 +62,7 @@ class GenderScreen extends StatelessWidget {
                     'What\' your Age?',
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headlineMedium!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   CustomTextField(

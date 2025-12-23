@@ -21,7 +21,7 @@ class CustomChipsContainer extends StatelessWidget {
                 interest,
                 style: Theme.of(context)
                     .textTheme
-                    .headline6!
+                    .labelLarge!
                     .copyWith(color: Colors.white),
               ),
             ),

@@ -26,7 +26,7 @@ class EmailScreen extends StatelessWidget {
                     'What\' Your Email Address?',
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headlineMedium!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   const SizedBox(
@@ -42,7 +42,7 @@ class EmailScreen extends StatelessWidget {
                     'What\' Your Password',
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headlineMedium!
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   const SizedBox(

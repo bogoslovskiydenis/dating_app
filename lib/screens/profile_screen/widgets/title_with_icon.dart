@@ -19,7 +19,7 @@ class TitleWithIcon extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         IconButton(
           onPressed: onPressed,  // Используем callback

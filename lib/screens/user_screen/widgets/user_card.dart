@@ -54,12 +54,12 @@ class UserCard extends StatelessWidget {
                       '${user.name}, ${user.age}',
                       style: Theme.of(context)
                           .textTheme
-                          .headline2!
+                          .headlineMedium!
                           .copyWith(color: Colors.white),
                     ),
                     Text(
                       user.jobTitle,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: Colors.white, fontWeight: FontWeight.normal),
                     ),
                     Row(

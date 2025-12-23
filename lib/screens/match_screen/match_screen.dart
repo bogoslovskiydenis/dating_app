@@ -46,7 +46,7 @@ class MatchesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Your Likes', style: Theme.of(context).textTheme.headline4),
+              Text('Your Likes', style: Theme.of(context).textTheme.titleMedium),
               SizedBox(
                 height: 80,
                 child: ListView.builder(
@@ -62,7 +62,7 @@ class MatchesScreen extends StatelessWidget {
                           ),
                           Text(
                             inactiveMatches[index].matchedUser.name,
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
                       );
@@ -70,7 +70,7 @@ class MatchesScreen extends StatelessWidget {
               ),
               Text(
                 'Your Chats',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(
                 child: ListView.builder(

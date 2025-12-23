@@ -34,7 +34,7 @@ class BiographyScreen extends StatelessWidget {
                       'Describe Yourself',
                       style: Theme.of(context)
                           .textTheme
-                          .headline1!
+                          .headlineLarge!
                           .copyWith(fontWeight: FontWeight.normal),
                     ),
                     CustomTextField(
@@ -53,7 +53,7 @@ class BiographyScreen extends StatelessWidget {
                       'What Do Dou like?',
                       style: Theme.of(context)
                           .textTheme
-                          .headline1!
+                          .headlineLarge!
                           .copyWith(fontWeight: FontWeight.normal),
                     ),
                     const CustomChipsContainer(),
