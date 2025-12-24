@@ -16,27 +16,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: SizedBox(
-                child: Image.asset(
-                  'assets/emblem.jpg',
-                  height: 60,
-                ),
+            Image.asset(
+              'assets/emblem.jpg',
+              height: 60,
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: GoogleFonts.reenieBeanie(
+                fontSize: 30,
+                color: const Color(0xFF282E4A),
+                fontWeight: FontWeight.bold,
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Text(
-                title,
-                style: GoogleFonts.reenieBeanie(
-                  fontSize: 30,
-                  color: const Color(0xFF282E4A),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            )
+            const Spacer(),
           ],
         ),
         actions: action

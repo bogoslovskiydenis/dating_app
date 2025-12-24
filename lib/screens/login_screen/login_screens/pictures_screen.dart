@@ -37,7 +37,7 @@ class PictureScreen extends StatelessWidget {
                 ),
                 //TODO : not download photo to firebase ....
                 SizedBox(
-                  height: 300,
+                  height: 400,
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(

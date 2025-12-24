@@ -20,9 +20,13 @@ class UserCard extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(user.imageUrls[0])),
+                    color: Colors.grey[300],
+                    image: user.imageUrls.isNotEmpty
+                        ? DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(user.imageUrls[0]),
+                          )
+                        : null,
                     borderRadius: BorderRadius.circular(5.0),
                     boxShadow: [
                       BoxShadow(
@@ -31,6 +35,15 @@ class UserCard extends StatelessWidget {
                           blurRadius: 4,
                           offset: const Offset(3, 3))
                     ]),
+                child: user.imageUrls.isEmpty
+                    ? Center(
+                        child: Icon(
+                          Icons.person,
+                          size: 80,
+                          color: Colors.grey[600],
+                        ),
+                      )
+                    : null,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -64,10 +77,14 @@ class UserCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        UserImageSmall(url: user.imageUrls[1]),
-                        UserImageSmall(url: user.imageUrls[2]),
-                        UserImageSmall(url: user.imageUrls[3]),
-                        UserImageSmall(url: user.imageUrls[4]),
+                        if (user.imageUrls.length > 1)
+                          UserImageSmall(url: user.imageUrls[1]),
+                        if (user.imageUrls.length > 2)
+                          UserImageSmall(url: user.imageUrls[2]),
+                        if (user.imageUrls.length > 3)
+                          UserImageSmall(url: user.imageUrls[3]),
+                        if (user.imageUrls.length > 4)
+                          UserImageSmall(url: user.imageUrls[4]),
                         const SizedBox(
                           width: 10,
                         ),

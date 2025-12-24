@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dating_app/repository/repositories.dart';
 import 'package:equatable/equatable.dart';
@@ -12,6 +13,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final DatabaseRepository _databaseRepository;
   final StorageRepo _storageRepo;
+  StreamSubscription<User>? _userSubscription;
 
   LoginBloc(
       {required DatabaseRepository databaseRepository,
@@ -37,10 +39,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   void _onUpdateUserLogin(
       UpdateUserLogin event, Emitter<LoginState> emit) async {
     if (state is LoginLoaded) {
-      _databaseRepository.updateUser(event.user);
-      emit(
-        LoginLoaded(user: event.user),
-      );
+      if (event.user.id != null) {
+        await _databaseRepository.updateUser(event.user);
+      }
+      emit(LoginLoaded(user: event.user));
     }
   }
 
@@ -48,14 +50,30 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       UpdateUserImages event, Emitter<LoginState> emit) async {
     if (state is LoginLoaded) {
       User user = (state as LoginLoaded).user;
-      await _storageRepo.uploadImage(user, event.image);
-      if (user.id != null) {
-        _databaseRepository.getUser(user.id.toString()).listen(
-          (event) {
-            add(UpdateUserLogin(user: user));
+      if (user.id == null) return;
+
+      try {
+        await _storageRepo.uploadImage(user, event.image);
+        
+        _userSubscription?.cancel();
+        _userSubscription = _databaseRepository.getUser(user.id!).listen(
+          (updatedUser) {
+            if (updatedUser.imageUrls.isNotEmpty) {
+              add(UpdateUserLogin(user: updatedUser));
+              _userSubscription?.cancel();
+            }
           },
         );
+      } catch (e) {
+        print('Error uploading image: $e');
+        emit(LoginError(message: 'Failed to upload image: $e'));
       }
     }
+  }
+
+  @override
+  Future<void> close() {
+    _userSubscription?.cancel();
+    return super.close();
   }
 }

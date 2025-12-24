@@ -43,10 +43,22 @@ class UsersScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.0),
-                            image: DecorationImage(
-                              image: NetworkImage(user.imageUrls[0]),
-                              fit: BoxFit.cover,
-                            )),
+                            color: Colors.grey[300],
+                            image: user.imageUrls.isNotEmpty
+                                ? DecorationImage(
+                                    image: NetworkImage(user.imageUrls[0]),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null),
+                        child: user.imageUrls.isEmpty
+                            ? Center(
+                                child: Icon(
+                                  Icons.person,
+                                  size: 80,
+                                  color: Colors.grey[600],
+                                ),
+                              )
+                            : null,
                       ),
                     ),
                   ),

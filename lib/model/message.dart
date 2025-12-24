@@ -1,21 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
 class Message extends Equatable {
-  final int id;
-  final int senderId;
-  final int receiverId;
+  final String? id;
+  final String senderId;
+  final String receiverId;
   final String message;
   final DateTime dateTime;
   final String timeString;
+  final bool isRead;
 
   const Message({
-    required this.id,
+    this.id,
     required this.senderId,
     required this.receiverId,
     required this.message,
     required this.dateTime,
     required this.timeString,
+    this.isRead = false,
   });
 
   @override
@@ -26,85 +29,50 @@ class Message extends Equatable {
     message,
     dateTime,
     timeString,
+    isRead,
   ];
 
-  static List<Message> messages = [
-    Message(
-        id: 1,
-        senderId: 1,
-        receiverId: 2,
-        message: 'Hey, how are you?',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 2,
-        senderId: 2,
-        receiverId: 1,
-        message: 'I\'m good, thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 3,
-        senderId: 1,
-        receiverId: 2,
-        message: 'I\'m good, as well. Thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 4,
-        senderId: 1,
-        receiverId: 3,
-        message: 'Hey, how are you?',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 5,
-        senderId: 3,
-        receiverId: 1,
-        message: 'I\'m good, thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 6,
-        senderId: 1,
-        receiverId: 5,
-        message: 'Hey, how are you?',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 7,
-        senderId: 5,
-        receiverId: 1,
-        message: 'I\'m good, thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 8,
-        senderId: 1,
-        receiverId: 6,
-        message: 'Hey, how are you?',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 9,
-        senderId: 6,
-        receiverId: 1,
-        message: 'I\'m good, thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 10,
-        senderId: 1,
-        receiverId: 7,
-        message: 'Hey, how are you?',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-    Message(
-        id: 11,
-        senderId: 7,
-        receiverId: 1,
-        message: 'I\'m good, thank you.',
-        dateTime: DateTime.now(),
-        timeString: DateFormat('jm').format(DateTime.now())),
-  ];
+  factory Message.fromDocument(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    final timestamp = (data['timestamp'] as Timestamp).toDate();
+    return Message(
+      id: snapshot.id,
+      senderId: data['senderId'] ?? '',
+      receiverId: data['receiverId'] ?? '',
+      message: data['message'] ?? '',
+      dateTime: timestamp,
+      timeString: DateFormat('jm').format(timestamp),
+      isRead: data['isRead'] ?? false,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'senderId': senderId,
+      'receiverId': receiverId,
+      'message': message,
+      'timestamp': Timestamp.fromDate(dateTime),
+      'isRead': isRead,
+    };
+  }
+
+  Message copyWith({
+    String? id,
+    String? senderId,
+    String? receiverId,
+    String? message,
+    DateTime? dateTime,
+    String? timeString,
+    bool? isRead,
+  }) {
+    return Message(
+      id: id ?? this.id,
+      senderId: senderId ?? this.senderId,
+      receiverId: receiverId ?? this.receiverId,
+      message: message ?? this.message,
+      dateTime: dateTime ?? this.dateTime,
+      timeString: timeString ?? this.timeString,
+      isRead: isRead ?? this.isRead,
+    );
+  }
 }

@@ -13,18 +13,22 @@ class StorageRepo extends BaseStorageRepo {
   @override
   Future<void> uploadImage(User user, XFile image) async {
     try {
+      if (user.id == null) return;
       await storage
-          .ref('user_1/${image.name}')
+          .ref('${user.id}/${image.name}')
           .putFile(File(image.path))
           .then((p0) =>
               DatabaseRepository().updateUserPictires(user, image.name));
-    } catch (_) {}
+    } catch (e) {
+      print('Error uploading image: $e');
+    }
   }
 
   @override
   Future<String> getDownloadUrl(User user, String imageName) async {
+    if (user.id == null) throw Exception('User ID is null');
     String downloadUrl =
-        await storage.ref('user_1/$imageName').getDownloadURL();
+        await storage.ref('${user.id}/$imageName').getDownloadURL();
 
     return downloadUrl;
   }

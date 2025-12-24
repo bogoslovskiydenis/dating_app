@@ -24,3 +24,12 @@ class UpdateProfile extends ProfileEvent {
   @override
   List<Object> get props => [user];
 }
+
+class LoadProfileError extends ProfileEvent {
+  final String message;
+
+  const LoadProfileError({required this.message});
+
+  @override
+  List<Object?> get props => [message];
+}

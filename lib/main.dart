@@ -76,10 +76,16 @@ class MyApp extends StatelessWidget {
               create: (context) => AuthBloc(authRepo: context.read<AuthRepo>())
           ),
           BlocProvider(
-            create: (context) => SwipeBloc()
-              ..add(LoadUsers(
-                users: User.users.where((user) => user.id != 1).toList(),
-              )),
+            create: (context) {
+              final authBloc = context.read<AuthBloc>();
+              final userId = authBloc.state.user?.uid;
+              final swipeBloc = SwipeBloc(
+                databaseRepository: context.read<DatabaseRepository>(),
+                currentUserId: userId,
+              );
+              swipeBloc.add(LoadUsers(currentUserId: userId));
+              return swipeBloc;
+            },
           ),
           BlocProvider<SignupCubit>(
             create: (context) => SignupCubit(

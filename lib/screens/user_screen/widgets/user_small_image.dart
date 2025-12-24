@@ -9,14 +9,20 @@ class UserImageSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isEmpty = url.isEmpty || url == 'https://via.placeholder.com/150';
     return Container(
       margin: const EdgeInsets.only(top: 8, right: 8),
       height: height,
       width: width,
       decoration: BoxDecoration(
-          image:
-          DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+          color: Colors.grey[300],
+          image: !isEmpty
+              ? DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
+              : null,
           borderRadius: BorderRadius.circular(5.0)),
+      child: isEmpty
+          ? Icon(Icons.person, size: height * 0.5, color: Colors.grey[600])
+          : null,
     );
   }
 }

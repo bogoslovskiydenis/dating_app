@@ -22,7 +22,11 @@ class AppRouter {
       case MatchesScreen.routeName:
         return MatchesScreen.route();
       case ChatScreen.routeName:
-        return ChatScreen.route(userMatch: settings.arguments as UserMatch);
+        final args = settings.arguments as Map<String, dynamic>;
+        return ChatScreen.route(
+          chatId: args['chatId'] as String,
+          matchedUser: args['matchedUser'] as User,
+        );
       case ProfileScreen.routeName:
         return ProfileScreen.route();
       case LoginScreen.routeName:

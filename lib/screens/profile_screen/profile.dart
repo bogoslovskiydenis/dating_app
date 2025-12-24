@@ -11,8 +11,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../bloc/profile/profile_state.dart';
 import '../../model/models.dart';
 import '../home/widget/home.dart';
+import '../splash_scren/splash_screen.dart';
 
-class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
   static const String routeName = '/profile';
 
@@ -25,6 +26,22 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
               ? const LoginScreen()
               : const ProfileScreen();
         });
+  }
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final authState = context.read<AuthBloc>().state;
+      if (authState.status == AuthStatus.authenticated && authState.user != null) {
+        context.read<ProfileBloc>().add(LoadProfile(userId: authState.user!.uid));
+      }
+    });
   }
 
   void _editBio(BuildContext context, User user) {
@@ -177,14 +194,23 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                               spreadRadius: 3,
                             ),
                           ],
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                                state.user.imageUrls.isNotEmpty
-                                    ? state.user.imageUrls[0]
-                                    : 'https://via.placeholder.com/150'),
-                          ),
+                          color: Colors.grey[300],
+                          image: state.user.imageUrls.isNotEmpty
+                              ? DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(state.user.imageUrls[0]),
+                                )
+                              : null,
                         ),
+                        child: state.user.imageUrls.isEmpty
+                            ? Center(
+                                child: Icon(
+                                  Icons.person,
+                                  size: 80,
+                                  color: Colors.grey[600],
+                                ),
+                              )
+                            : null,
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height / 4,
@@ -283,7 +309,7 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
                           onPressed: () {
                             context.read<AuthBloc>().add(const AuthLogoutRequested());
                             Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) => const LoginScreen()),
+                              MaterialPageRoute(builder: (context) => SplashScreen()),
                                   (route) => false,
                             );
                           },
@@ -331,7 +357,4 @@ class ProfileScreen extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(56);
 }
