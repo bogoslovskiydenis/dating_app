@@ -30,7 +30,8 @@ class AppRouter {
       case ProfileScreen.routeName:
         return ProfileScreen.route();
       case LoginScreen.routeName:
-        return LoginScreen.route();
+        final initialIndex = settings.arguments as int? ?? 0;
+        return LoginScreen.route(initialIndex: initialIndex);
       case RegistrationScreen.routeName:
         return RegistrationScreen.route();
       case SplashScreen.routeName:

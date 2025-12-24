@@ -61,9 +61,8 @@ class RegistrationScreen extends StatelessWidget {
               endColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
               onPressed: () =>
-                  Navigator.of(context).restorablePushNamedAndRemoveUntil(
-                    LoginScreen.routeName,
-                    ModalRoute.withName('/login'),
+                  Navigator.of(context).pushReplacement(
+                    LoginScreen.route(initialIndex: 1),
                   ),
             ),
           ],
