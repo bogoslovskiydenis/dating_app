@@ -23,54 +23,51 @@ class PictureScreen extends StatelessWidget {
             );
           }
           if (state is LoginLoaded) {
-            var images = state.user.imageUrls;
-            var imageCount = images.length;
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Add 2 or more Pictures',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineLarge!
-                      .copyWith(fontWeight: FontWeight.normal),
-                ),
-                //TODO : not download photo to firebase ....
-                SizedBox(
-                  height: 400,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            childAspectRatio: 0.66),
-                    itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      return (state.user.imageUrls.length > index)
-                          ? CustomImageContainer(
-                              imageUrls: state.user.imageUrls[index],
-                            )
-                          : const CustomImageContainer();
-                    },
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Add 2 or more Pictures',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(fontWeight: FontWeight.normal),
                   ),
-                ),
-                Column(
-                  children: [
-                    const StepProgressIndicator(
-                      totalSteps: 6,
-                      currentStep: 5,
-                      selectedColor: Colors.red,
-                      unselectedColor: Colors.blue,
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 400,
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 0.66),
+                      itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return (state.user.imageUrls.length > index)
+                            ? CustomImageContainer(
+                                imageUrls: state.user.imageUrls[index],
+                              )
+                            : const CustomImageContainer();
+                      },
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    CustomButton(
-                      tabController: tabController,
-                      text: 'Choice Photo to Next Step',
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(height: 24),
+                  const StepProgressIndicator(
+                    totalSteps: 6,
+                    currentStep: 5,
+                    selectedColor: Colors.red,
+                    unselectedColor: Colors.blue,
+                  ),
+                  const SizedBox(height: 20),
+                  CustomButton(
+                    tabController: tabController,
+                    text: 'Choice Photo to Next Step',
+                  ),
+                ],
+              ),
             );
           } else {
             return const Text('Something Wrong');

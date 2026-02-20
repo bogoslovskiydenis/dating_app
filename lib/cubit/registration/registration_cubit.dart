@@ -27,6 +27,8 @@ class RegistrationCubit extends Cubit<RegistrationState> {
       await _authRepo.logInWithEmailAndPassword(
           email: state.email, password: state.password);
       emit(state.copyWith(status: RegistrationStatus.success));
-    } catch (_) {}
+    } catch (_) {
+      emit(state.copyWith(status: RegistrationStatus.error));
+    }
   }
 }

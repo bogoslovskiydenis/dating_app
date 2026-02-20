@@ -30,3 +30,4 @@ class ChatError extends ChatState {
   List<Object?> get props => [message];
 }
 
+

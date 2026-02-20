@@ -1,3 +1,4 @@
+import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:dating_app/bloc/blocks.dart';
 import 'package:dating_app/cubit/registration/registration_cubit.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
@@ -25,12 +26,30 @@ class RegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Dating',
-        action: false,
-      ),
-      body: Padding(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state.status == AuthStatus.authenticated && context.mounted) {
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+        }
+      },
+      child: BlocListener<RegistrationCubit, RegistrationState>(
+        listener: (context, state) {
+          if (state.status == RegistrationStatus.error && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Неверный email или пароль'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            context.read<RegistrationCubit>().emailChanged(state.email);
+          }
+        },
+        child: Scaffold(
+        appBar: const CustomAppBar(
+          title: 'Dating',
+          action: false,
+        ),
+        body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +87,8 @@ class RegistrationScreen extends StatelessWidget {
           ],
         ),
       ),
+    ),
+    ),
     );
   }
 }

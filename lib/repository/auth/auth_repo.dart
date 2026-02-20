@@ -36,11 +36,12 @@ class AuthRepo extends BaseAuthRepo {
 
   @override
   Future<void> logInWithEmailAndPassword({
-  required String email,
+    required String email,
     required String password,
-}) async {
-    try{
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    } catch(_){}
+  }) async {
+    await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 }

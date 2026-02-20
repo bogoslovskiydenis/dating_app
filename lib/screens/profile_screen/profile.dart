@@ -1,6 +1,7 @@
 import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:dating_app/bloc/profile/profile_bloc.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
+import 'package:dating_app/repository/storage/storage_repository.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/profile_screen/widgets/title_with_icon.dart';
@@ -145,12 +146,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Future<void> _addImage(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      // ignore: use_build_context_synchronously
-      // context.read<ProfileBloc>().add(UpdateUserImages(image: image));
+  Future<void> _addImage(BuildContext context, User user) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null && context.mounted) {
+      await context.read<StorageRepo>().uploadImage(user, image);
     }
   }
 
@@ -180,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 16),
                   Stack(
                     children: [
                       Container(
@@ -256,7 +256,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         TitleWithIcon(
                           title: 'Pictures',
                           icon: Icons.add_a_photo,
-                          onPressed: () => _addImage(context),
+                          onPressed: () => _addImage(context, state.user),
                         ),
                         SizedBox(
                           height: 80,
