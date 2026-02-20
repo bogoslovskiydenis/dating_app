@@ -1,8 +1,11 @@
 import 'package:dating_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:dating_app/bloc/profile/profile_bloc.dart';
 import 'package:dating_app/repository/auth/auth_repo.dart';
+import 'package:dating_app/repository/database/db_repository.dart';
 import 'package:dating_app/repository/storage/storage_repository.dart';
 import 'package:dating_app/screens/home/home_screen.dart';
+import 'package:dating_app/seed/seed_users.dart';
+import 'package:flutter/foundation.dart';
 import 'package:dating_app/screens/login_screen/logn_screen.dart';
 import 'package:dating_app/screens/profile_screen/widgets/title_with_icon.dart';
 import 'package:flutter/material.dart';
@@ -305,6 +308,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             );
                           }).toList(),
                         ),
+                        if (kDebugMode)
+                          TextButton(
+                            onPressed: () async {
+                              try {
+                                await SeedUsers.run(context.read<DatabaseRepository>());
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Добавлено 20 тестовых пользователей')),
+                                  );
+                                }
+                              } catch (e) {
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Ошибка: $e'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                            child: Text(
+                              'Seed 20 users (debug)',
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                            ),
+                          ),
                         TextButton(
                           onPressed: () {
                             context.read<AuthBloc>().add(const AuthLogoutRequested());
